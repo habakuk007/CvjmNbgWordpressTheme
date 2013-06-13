@@ -1,0 +1,100 @@
+/*
+Theme Name: CVJM Nuernberg
+Theme URI:
+Author: Oliver Weber
+Author URI: http://www.cvjm-nuernberg.de/
+Description: Theme for the CVJM Nuernberg webpage
+Version: 0.1
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tags: specific, responsive
+Text Domain: cvjmnuernberg
+
+This theme, like WordPress, is licensed under the GPL.
+*/
+
+/* Header elements */
+.header {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.headlogo {
+  width: 205px;
+  height: 70px;
+  float: left;
+}
+
+.headerright {
+  text-align: right;
+}
+
+.mainmenu {
+  font-weight: bold;
+}
+
+.fullseperator {
+  width: 100%;
+  clear: both;
+}
+
+/* Frontpage elements */
+.frontpage_association {
+  width: 50%;
+  display: inline;
+}
+
+.frontpage_firstcontact {
+  width: 50%;
+  display: inline;
+}
+
+.frontpage_losung {
+  width: 100%;
+}
+
+/* New box element */
+.news_promo_img {
+  width: 170px;
+  height: 240px;
+  display: inline-block;
+}
+
+.news_promo_image_container {
+  display: inline-block;
+  float: left;
+}
+
+.news_list {
+  display: inline-block;
+}
+
+.grid {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  clear: both;
+}
+
+.grid_item {
+  display: inline-block;
+  vertical-align:top;
+}
+
+.grid_8_1 {
+  width: 12%;
+}
+
+.grid_8_2 {
+  width: 24%;
+}
+
+.grid_8_3 {
+  width: 37%;
+}
+
+.grid_8_4 {
+  width: 48%;
+}
+
