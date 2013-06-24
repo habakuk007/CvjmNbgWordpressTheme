@@ -16,14 +16,35 @@
 
 get_header(); ?>
 
-<div class="grid">
-<?php get_template_part( 'news', 'box'); ?>
-  <div class="grid_8_2 grid_item">
-    <div class="frontpage_association">Vereine</div>
-    <div class="frontpage_firstcontact">First Contact</div>
-    <div class="frontpage_losung"><?php the_widget('Losung_Widget', 'showcopy=1'); ?></div>
+<div id="frontpage_first_row" class="grid">
+  <div id="frontpage_newsbox">
+    <?php get_template_part( 'news', 'box'); ?>
   </div>
-<div class="grid_8_2 grid_item">Nav Container</div>
+  <div id="frontpage_quicknav">
+    <img src="<?php bloginfo('template_directory'); ?>/images/vereine_frontpage.png" class="frontpage_association_img" />
+    <img src="<?php bloginfo('template_directory'); ?>/images/firstcontact_frontpage.png" class="frontpage_firstcontact_img" />
+    <?php the_widget('Losung_Widget', ''); ?>
+  </div>
+<div id="frontpage_group_list">
+  <img src="<?php bloginfo('template_directory'); ?>/images/kinder_frontpage.png" class="frontpage_nav_img" />
+  <img src="<?php bloginfo('template_directory'); ?>/images/kinder_frontpage.png" class="frontpage_nav_img" />
+  <img src="<?php bloginfo('template_directory'); ?>/images/kinder_frontpage.png" class="frontpage_nav_img" />
+  <img src="<?php bloginfo('template_directory'); ?>/images/kinder_frontpage.png" class="frontpage_nav_img" />
+  <img src="<?php bloginfo('template_directory'); ?>/images/kinder_frontpage.png" class="frontpage_nav_img" />
+  <img src="<?php bloginfo('template_directory'); ?>/images/kinder_frontpage.png" class="frontpage_nav_img" />
+  <img src="<?php bloginfo('template_directory'); ?>/images/kinder_frontpage.png" class="frontpage_nav_img" />
+  <img src="<?php bloginfo('template_directory'); ?>/images/kinder_frontpage.png" class="frontpage_nav_img" />
+</div>
+</div>
+
+<div id="frontpage_second_row" class="grid">
+  <div id="frontpage_eventbox">
+    <?php get_template_part( 'event', 'box'); ?>
+  </div>
+  <div id="frontpage_quicklink">
+    <img src="<?php bloginfo('template_directory'); ?>/images/galery_frontpage.png" id="frontpage_galery" />
+    <img src="<?php bloginfo('template_directory'); ?>/images/video_frontpage.png"  id="frontpage_video"/>
+  </div>
 </div>
 
 <?php get_footer(); ?>

@@ -30,6 +30,11 @@ This theme, like WordPress, is licensed under the GPL.
   text-align: right;
 }
 
+.footercontainer {
+  width: 100%;
+  background-color: #e3e3e3;
+}
+
 .mainmenu {
   font-weight: bold;
 }
@@ -39,36 +44,62 @@ This theme, like WordPress, is licensed under the GPL.
   clear: both;
 }
 
+/* Footer elements */
+.menu {
+  list-style: none;
+}
+
 /* Frontpage elements */
-.frontpage_association {
-  width: 50%;
-  display: inline;
+.frontpage_association_img {
+  /*width: 104px;
+  height: 158px;*/
+  width: 45%;
+  display: inline-block;
 }
 
-.frontpage_firstcontact {
-  width: 50%;
-  display: inline;
+.frontpage_firstcontact_img {
+  /*width: 104px;
+  height: 158px;*/
+  width: 45%;
+  display: inline-block;
 }
 
-.frontpage_losung {
+/* Style der Losung */
+.widget_losung {
   width: 100%;
+  background-color: #a6aae9;
+  clear: both;
+}
+
+.losung-text {
+  font-size: small;
+}
+
+.losung-versangabe {
+  font-size: xx-small;
 }
 
 /* New box element */
 .news_promo_img {
-  width: 170px;
-  height: 240px;
-  display: inline-block;
-}
-
-.news_promo_image_container {
-  display: inline-block;
+  /*width: 170px;
+  height: 240px;*/
+  width: 30%;
   float: left;
+  padding-right: 10px;
 }
 
-.news_list {
-  display: inline-block;
+.newstitle {
+  font-weight: bold;
 }
+
+.event_promo_img {
+  /*width: 170px;
+  height: 240px;*/
+  width: 30%;
+  float: left;
+  padding-right: 10px;
+}
+
 
 .grid {
   width: 100%;
@@ -77,24 +108,105 @@ This theme, like WordPress, is licensed under the GPL.
   clear: both;
 }
 
-.grid_item {
-  display: inline-block;
-  vertical-align:top;
+.evtermine_date {
+  font-weight: bold;
 }
 
-.grid_8_1 {
-  width: 12%;
+.evtermine_title {
+  font-weight: bold;
+  font-size: small;
 }
 
-.grid_8_2 {
-  width: 24%;
-}
+@media all and (min-width: 768px) {
+  .frontpage_nav_img {
+    width: 49%;
+  }
 
-.grid_8_3 {
-  width: 37%;
-}
+  #frontpage_newsbox {
+    display: inline-block;
+    vertical-align:top;
+    width: 48%;
+  }
 
-.grid_8_4 {
-  width: 48%;
+  #frontpage_quicknav {
+    display: inline-block;
+    vertical-align:top;
+    width: 24%;
+  }
+
+  #frontpage_group_list {
+    display: inline-block;
+    vertical-align:top;
+    width: 24%;
+  }
+
+  /* Event box element */
+  #frontpage_eventbox {
+    display: inline-block;
+    vertical-align:top;
+    width: 48%;
+  }
+
+  #frontpage_quicklink {
+    display: inline-block;
+    vertical-align:top;
+    width: 50%;
+  }
+
+  #frontpage_galery {
+    display: inline-block;
+    vertical-align:top;
+    width: 48%;
+  }
+
+  #frontpage_video {
+    display: inline-block;
+    vertical-align:top;
+    width: 48%;
+  }
+}
+@media all and (max-width: 768px) {
+  .frontpage_nav_img {
+    width: 11%;
+  }
+
+  #frontpage_group_list {
+    display: inline;
+    clear: both;
+    width: 100%;
+  }
+
+  #frontpage_newsbox {
+    display: inline-block;
+    vertical-align:top;
+    width: 66%;
+  }
+
+  #frontpage_quicknav {
+    display: inline-block;
+    vertical-align:top;
+    width: 33%;
+  }
+
+  /* Event box element */
+  #frontpage_eventbox {
+    display: inline-block;
+    vertical-align:top;
+    width: 64%;
+  }
+
+  #frontpage_quicklink {
+    display: inline-block;
+    vertical-align:top;
+    width: 34%;
+  }
+
+  #frontpage_galery {
+    width: 100%;
+  }
+
+  #frontpage_video {
+    width: 100%;
+  }
 }
 

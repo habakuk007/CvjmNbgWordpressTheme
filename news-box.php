@@ -1,7 +1,5 @@
-<div class="news_box grid_8_4 grid_item">
   <h1 class="news_headline headline">News</h1>
   <hr class="fullseperator">
-  <div class="news_promo_image_container">
     <?php
       $media_query = new WP_Query(
         array(
@@ -17,11 +15,10 @@
 
       foreach ($list as $image) {
         if (strpos($image, "news_frontpage.png")) {
-          print "<img class=\"news_promo_img\" src=\"" . $image . "\" />\n";
+          echo '<img class="news_promo_img" src="' . $image . '" />';
         }
       }
     ?>
-  </div>
   <div class="news_list">
   <?php
     $news_query = new WP_Query(
@@ -34,6 +31,11 @@
         'order' => 'DESC'
         )
       );
+
+      while( $news_query->have_posts() ) {
+        $news_query->the_post();
+        echo '<span class="newstitle">' . get_the_title() . '</span>';
+        echo '<span class="newsshorttext">' . the_content('mehr...'). '</span>';
+      }
   ?>
-  Hier kommen die News</div>
-</div>
+  </div>
