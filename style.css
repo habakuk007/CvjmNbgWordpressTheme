@@ -13,11 +13,32 @@ Text Domain: cvjmnuernberg
 This theme, like WordPress, is licensed under the GPL.
 */
 
+@font-face {
+   font-family: MyriadPro;
+   src: url( wordpress/wp-content/themes/cvjmnuernberg/fonts/MyriadPro-Regular.eot );
+   src: local ('MyriadPro-Regular'),
+   url( wordpress/wp-content/themes/cvjmnuernberg/fonts/MyriadPro-Regular.woff) format('woff'),
+   url( wordpress/wp-content/themes/cvjmnuernberg/fonts/MyriadPro-Regular.otf) format('opentype')
+}
+
+/* Main settings */
+body {
+  font-family: MyriadPro, Arial;
+}
+
+p {
+  margin-top: 2px;
+  margin-bottom: 2px;
+  padding: 0px 0px 0px 0px;
+}
+
 /* Header elements */
 .header {
   width: 100%;
   margin-left: auto;
   margin-right: auto;
+  background-image: url(images/header_background.png);
+  background-position:0px 100%;
 }
 
 .headlogo {
@@ -30,9 +51,15 @@ This theme, like WordPress, is licensed under the GPL.
   text-align: right;
 }
 
-.footercontainer {
-  width: 100%;
-  background-color: #e3e3e3;
+.search_field {
+  margin-right: 0px;
+  padding-right: 0px;
+}
+
+.search_go {
+  height: 1.1em;
+  margin-left: 0px;
+  padding-left: 0px;
 }
 
 .mainmenu {
@@ -41,7 +68,23 @@ This theme, like WordPress, is licensed under the GPL.
 
 .fullseperator {
   width: 100%;
+  color: #646464;
   clear: both;
+  background-color: #646464;
+  border: 0px;
+}
+
+.partseperator {
+  width: 25%;
+  color: #646464;
+  clear: both;
+  background-color: #646464;
+  border: 0px;
+  margin-left: 0;
+}
+
+hr.veryheight {
+  height: 5px;
 }
 
 /* Footer elements */
@@ -49,19 +92,114 @@ This theme, like WordPress, is licensed under the GPL.
   list-style: none;
 }
 
-/* Frontpage elements */
-.frontpage_association_img {
-  /*width: 104px;
-  height: 158px;*/
-  width: 45%;
-  display: inline-block;
+.footercontainer {
+  clear: both;
+  width: 100%;
+  background: url(images/footer_background.png);
+  padding-top: 25px;
+  padding-bottom: 20px;
 }
 
-.frontpage_firstcontact_img {
-  /*width: 104px;
-  height: 158px;*/
-  width: 45%;
+/* Container with circles */
+.circles_container {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.circle_span {
+  text-align: center;
   display: inline-block;
+  width: 12%;
+  font-weight: bold;
+}
+
+.circle_image {
+  width: 100%;
+}
+
+/* main content */
+.main_container {
+  float: left;
+  width: 75%;
+}
+
+/* Sidebar */
+.right_sidebar_container {
+  float: right;
+  width: 20%;
+}
+
+/* First contact */
+.first_contact_container {
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+.first_contact_headline {
+  font-size: large;
+  color: #d2232b;
+  margin: 0;
+  padding: 2px;
+}
+
+.first_contact_desc {
+  padding: 0;
+  margin: 1px;
+  font-size: small;
+}
+
+.first_contact_text_input {
+  width: 100%;
+}
+
+.first_contact_submit {
+  width: 100%;
+  background-color: #d2232b;
+  color: #ffffff;
+  border: none;
+}
+
+/* City map */
+.map_container {
+  width: 100%;
+}
+
+.map_image {
+  width: 100%;
+}
+
+.photo_galery_container {
+  width: 100%;
+  position: relative;
+}
+
+.photo_galery_image {
+  width: 100%;
+}
+
+.photo_galery_label {
+  background: #FFFFFF;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 3px;
+}
+
+.video_container {
+  width: 100%;
+  position: relative;
+}
+
+.video_image {
+  width: 100%;
+}
+
+.video_label {
+  background: #FFFFFF;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 3px;
 }
 
 /* Style der Losung */
@@ -80,133 +218,45 @@ This theme, like WordPress, is licensed under the GPL.
 }
 
 /* New box element */
-.news_promo_img {
-  /*width: 170px;
-  height: 240px;*/
-  width: 30%;
-  float: left;
-  padding-right: 10px;
+.news_headline {
+  font-size: medium;
+  color: #d2232b;
 }
 
 .newstitle {
   font-weight: bold;
+  margin-top: 0px;
+  padding-top: 0px;
 }
 
-.event_promo_img {
-  /*width: 170px;
-  height: 240px;*/
-  width: 30%;
-  float: left;
-  padding-right: 10px;
+.newsshorttext {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  font-size: small;
 }
 
+/* Event box */
+.event_headline {
+  font-size: medium;
+  color: #d2232b;
+}
 
-.grid {
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  clear: both;
+.evtermine_container {
+  margin-top: 3px;
+  margin-bottom: 3px;
 }
 
 .evtermine_date {
-  font-weight: bold;
 }
 
 .evtermine_title {
   font-weight: bold;
+}
+
+.evtermine_desc {
   font-size: small;
 }
 
-@media all and (min-width: 768px) {
-  .frontpage_nav_img {
-    width: 49%;
-  }
-
-  #frontpage_newsbox {
-    display: inline-block;
-    vertical-align:top;
-    width: 48%;
-  }
-
-  #frontpage_quicknav {
-    display: inline-block;
-    vertical-align:top;
-    width: 24%;
-  }
-
-  #frontpage_group_list {
-    display: inline-block;
-    vertical-align:top;
-    width: 24%;
-  }
-
-  /* Event box element */
-  #frontpage_eventbox {
-    display: inline-block;
-    vertical-align:top;
-    width: 48%;
-  }
-
-  #frontpage_quicklink {
-    display: inline-block;
-    vertical-align:top;
-    width: 50%;
-  }
-
-  #frontpage_galery {
-    display: inline-block;
-    vertical-align:top;
-    width: 48%;
-  }
-
-  #frontpage_video {
-    display: inline-block;
-    vertical-align:top;
-    width: 48%;
-  }
-}
-@media all and (max-width: 768px) {
-  .frontpage_nav_img {
-    width: 11%;
-  }
-
-  #frontpage_group_list {
-    display: inline;
-    clear: both;
-    width: 100%;
-  }
-
-  #frontpage_newsbox {
-    display: inline-block;
-    vertical-align:top;
-    width: 66%;
-  }
-
-  #frontpage_quicknav {
-    display: inline-block;
-    vertical-align:top;
-    width: 33%;
-  }
-
-  /* Event box element */
-  #frontpage_eventbox {
-    display: inline-block;
-    vertical-align:top;
-    width: 64%;
-  }
-
-  #frontpage_quicklink {
-    display: inline-block;
-    vertical-align:top;
-    width: 34%;
-  }
-
-  #frontpage_galery {
-    width: 100%;
-  }
-
-  #frontpage_video {
-    width: 100%;
-  }
-}
 
