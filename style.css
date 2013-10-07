@@ -92,6 +92,20 @@ hr.veryheight {
   list-style: none;
 }
 
+.sub-menu {
+  list-style: none;
+  padding-left: 0;
+  margin-left: 1em;
+}
+
+.footer_menu_item_depth_0 {
+  text-decoration: underline;
+}
+
+.footer_menu_item_depth_1 {
+  font-size: small;
+}
+
 .footercontainer {
   clear: both;
   width: 100%;
