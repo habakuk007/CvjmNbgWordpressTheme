@@ -2,7 +2,8 @@
 /*
 Template Name: Zielgruppe
 */
-get_header(); ?>
+get_header();
+$news_id = get_field( 'categorie_news' )?>
 
 <div class="target_group_headline_container">
   <span class="target_group_headline"><?php the_title()?></span>
@@ -24,7 +25,63 @@ get_header(); ?>
   </div>
 </div>
 
-<div class="target_group_contact_container">
+<h1 class="target_group_contact_headline">Ansprechpartner</h1>
+
+<?php
+  $count = 0;
+  $contact_query = new WP_Query(
+      array(
+      'post_type' => 'post',
+      'post_status' => 'publish',
+      'cat' => get_field( 'responsible_contact_category' ),
+      'posts_per_page' => -1,
+      'meta_key'    => 'responsible_position',
+      'orderby'   => 'meta_value_num',
+      'order'     => 'ASC'
+      )
+    );
+
+  while( $contact_query->have_posts() ) {
+    if (($count % 3) == 0)
+    {
+      if ($count >= 3)
+      {
+        echo '</div>';
+      }
+      echo '<div class="target_group_contact_container">' . "\n";
+    }
+    $contact_query->the_post();
+    echo '<div class="target_group_contact_entry">' . "\n";
+    echo '<img src="';
+    echo the_field( 'responsible_image' );
+    echo '" class="target_group_contact_image" />' . "\n";
+    echo '<span>';
+    echo the_field( 'responsible_association' );
+    echo '<br>' . "\n";
+    echo the_field( 'responsible_name' );
+    echo '<br>' . "\n";
+    echo the_field( 'responsible_address' );
+    echo '<br>' . "\n";
+    echo '</span>' . "\n";
+    echo '</div>' . "\n";
+    $count++;
+  }
+?>
+</div>
+
+<div class="main_container">
+  <?php require(locate_template('news-box.php')); ?>
+</div>
+
+<div class="right_sidebar_container">
+  <div class="photo_galery_container">
+    <img src="<?php bloginfo('template_directory'); ?>/images/galery.png" class="photo_galery_image"/>
+    <span class="photo_galery_label">Bildergalerie</span>
+  </div>
+  <div class="video_container">
+    <img src="<?php bloginfo('template_directory'); ?>/images/galery.png" class="video_image"/>
+    <span class="video_label">Videos</span>
+  </div>
 </div>
 
 <?php get_footer(); ?>

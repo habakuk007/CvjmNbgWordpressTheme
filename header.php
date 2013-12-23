@@ -25,13 +25,14 @@
 <?php wp_head(); ?>
 
 <!-- FlexSlider -->
-<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/js/flexslider.css" type="text/css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri() ?>/js/flexslider.css" type="text/css">
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>-->
+<script src="<?php bloginfo('template_directory'); ?>/js/jquery.tools.min.js"></script>
 <script src="<?php bloginfo('template_directory'); ?>/js/jquery.flexslider-min.js"></script>
 
 <script type="text/javascript" charset="utf-8">
   $(window).load(function() {
-    $('.flexslider').flexslider();
+    $('.flexslider').flexslider({ directionNav: false });
   });
 </script>
 
@@ -43,18 +44,39 @@
 
 <div class="header">
   <img src="<?php bloginfo('template_directory'); ?>/images/logo_main.png" class="headlogo"/>
-  <div class="headerright staticmenu">
-    &Uuml;ber uns&nbsp;|&nbsp;Vereine&nbsp;|&nbsp;Kontakt&nbsp;|&nbsp;Intern
-  </div>
+  <?php wp_nav_menu( array( 'theme_location' => 'top-short-menu',
+                            'container_class' => 'header_top_menu',
+                            'walker' => new Top_Menu_Walker() ));?>
   <div class="headerright searchform">
-    <form><input type="text" placeholder="Suchbegriff eingeben" size="30" class="search_field" />
-    <input type="image" src="<?php bloginfo('template_directory'); ?>/images/go_button.png" class="search_go" />
+    <form role="search" method="get" id="searchform" action="/wordpress/">
+    <input type="text" placeholder="Suchbegriff eingeben" size="30" name="s" id="s" class="search_field" />
+    <input type="image" id="searchsubmit" src="<?php bloginfo('template_directory'); ?>/images/go_button.png" class="search_go" />
     </form>
   </div>
   <div class="headerright languages">
     Deutsch&nbsp;|&nbsp;English&nbsp;|&nbsp;Espanol
   </div>
   <?php wp_nav_menu( array( 'theme_location' => 'header-menu',
-                            'container_class' => 'headerright' ) ); ?>
+                            'container_class' => 'headerright',
+                            'walker' => new Walker_Header_Popup_Menu() ) ); ?>
+  <script type="text/javascript" charset="utf-8">
+    $('#menu-header-menu li').hover(
+      function() {
+        $(this).find('ul').css('visibility', 'visible');
+      },
+      function() {
+        $(this).find('ul').css('visibility', 'hidden');
+      }
+    );
+    $('#menu-header-menu li ul li a').click(
+      function() {
+        $(this).find('ul').css('visibility', 'visible');
+      }
+    );
+
+    $(document).ready(function() {
+      $("a[rel]").overlay();
+    });
+  </script>
 </div>
 <hr class="fullseperator veryheight">

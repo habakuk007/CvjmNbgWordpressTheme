@@ -19,11 +19,21 @@ get_header(); ?>
 <?php $circle_name = 'circles_main'; require(locate_template('circles.php')); ?>
 
 <div class="main_container">
-  <?php $teaser_name = 'teaser'; require(locate_template('teaser.php')); ?>
+  <h1>Suchergebnisse</h1>
+  <?php if (have_posts()) : ?>
+    <?php while (have_posts()) : the_post(); ?>
+      <h2><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></h2>
+        <div class="entry">
+          <?php the_content(); ?>
+        </div>
+    <?php endwhile; ?>
 
-  <?php $event_vid = '1495,1496,1497,1498,1499,1500'; require(locate_template('event-box.php')); ?>
+    <p align="center"><?php next_posts_link('&laquo; &Auml;ltere Eintr&auml;ge') ?> | <?php previous_posts_link('Neuere Eintr&auml;ge &raquo;') ?></p>
 
-  <?php $news_name = 'news'; require(locate_template('news-box.php')); ?>
+  <?php else : ?>
+    <h2>Leider nichts gefunden</h2>
+
+   <?php endif; ?>
 </div>
 
 <div class="right_sidebar_container">

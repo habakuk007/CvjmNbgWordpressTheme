@@ -24,6 +24,8 @@ This theme, like WordPress, is licensed under the GPL.
 /* Main settings */
 body {
   font-family: MyriadPro, Arial;
+  margin: 0;
+  padding: 0;
 }
 
 p {
@@ -32,11 +34,18 @@ p {
   padding: 0px 0px 0px 0px;
 }
 
+.clearlink {
+  text-decoration: none;
+  color: #000;
+}
+
 /* Header elements */
 .header {
   width: 100%;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 0;
+  padding-top: 0;
   background-image: url(images/header_background.png);
   background-position:0px 100%;
 }
@@ -45,13 +54,23 @@ p {
   width: 205px;
   height: 70px;
   float: left;
+  margin-top: 0.5em;
+  margin-left: 0.5em;
+  padding-top: 0;
 }
 
 .headerright {
   text-align: right;
 }
 
+.searchform {
+  padding-top: 0;
+  margin-top: 0;
+}
+
 .search_field {
+  padding-top: 0;
+  margin-top: 0;
   margin-right: 0px;
   padding-right: 0px;
 }
@@ -62,8 +81,53 @@ p {
   padding-left: 0px;
 }
 
+.header_top_menu {
+  text-align: right;
+  font-size: small;
+  padding-top: 1px;
+  padding-bottom: 0;
+  padding-right: 0.5em;
+  margin-bottom: 0;
+}
+
+.languages {
+  font-size: small;
+}
+
+.linelist {
+  display: inline;
+  list-style-type: none;
+  padding-right: 1em;
+}
+
 .mainmenu {
   font-weight: bold;
+}
+
+.header-sub-menu-popup {
+  list-style-type:none;
+  list-style-image:none;
+  position:absolute;
+  visibility:hidden;
+  text-align: left;
+  margin:0;
+  padding-left:0.5em;
+  padding-right:0.5em;
+  padding-top: 0.1em;
+  padding-bottom: 0.1em;
+  right: 5em;
+  border:1px solid #888;
+  background-color:#fff;
+  border-collapse:collapse;
+  -moz-box-shadow:    3px 3px 3px #ccc;
+  -webkit-box-shadow: 3px 3px 3px #ccc;
+  box-shadow:         3px 3px 3px #ccc;
+}
+
+.header_menu_arrow {
+  margin-left: 0.5em;
+  height: 0.5em;
+  vertical-align: center;
 }
 
 .fullseperator {
@@ -112,24 +176,6 @@ hr.veryheight {
   background: url(images/footer_background.png);
   padding-top: 25px;
   padding-bottom: 20px;
-}
-
-/* Container with circles */
-.circles_container {
-  text-align: center;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-.circle_span {
-  text-align: center;
-  display: inline-block;
-  width: 12%;
-  font-weight: bold;
-}
-
-.circle_image {
-  width: 100%;
 }
 
 /* main content */
@@ -241,6 +287,11 @@ hr.veryheight {
   font-weight: bold;
   margin-top: 0px;
   padding-top: 0px;
+  text-decoration: none;
+}
+
+a.newstitle:hover {
+  text-decoration: underline;
 }
 
 .newsshorttext {
@@ -267,10 +318,60 @@ hr.veryheight {
 
 .evtermine_title {
   font-weight: bold;
+  text-decoration: none;
+}
+
+a.evtermine_title:hover {
+  text-decoration: underline;
 }
 
 .evtermine_desc {
   font-size: small;
 }
 
+/* the overlayed element */
+.simple_overlay {
+    /* must be initially hidden */
+    display:none;
+    /* place overlay on top of other elements */
+    z-index:10000;
+    /* styling */
+    background-color:#CCC;
+    width:675px;
+    min-height:200px;
+    border:1px solid #666;
+    /* CSS3 styling for latest browsers */
+    -moz-box-shadow:0 0 90px 5px #000;
+    -webkit-box-shadow: 0 0 90px #000;
+}
 
+/* close button positioned on upper right corner */
+.simple_overlay .close {
+    background-image:url(images/close.png);
+    position:absolute;
+    right:-15px;
+    top:-15px;
+    cursor:pointer;
+    height:35px;
+    width:35px;
+}
+
+/* Container with circles */
+.circles_container {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.circle_span {
+  text-align: center;
+  display: inline-block;
+  width: 12%;
+  font-weight: bold;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.circle_image {
+  width: 100%;
+}

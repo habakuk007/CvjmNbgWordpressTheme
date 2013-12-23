@@ -1,29 +1,28 @@
 <?php
 /*
-Template Name: Verein Hauptseite
+Template Name: Verein Freiseite
 */
 get_header();
 
+/* We get all values for the standard things from the parent page, so we need the ID of it */
+  global $post;
+  $parent_id = $post->post_parent;
 /* Save the values for our sub modules, because our page fields are gone
  * if the first sub module makes a new query */
-  $circle_id = get_field( 'felder_verein_hauptseite_kreise' );
-  $teaser_id = get_field( 'felder_verein_hauptseite_kreise_teaser' );
-  $event_vid = get_field( 'felder_verein_hauptseite_vid' );
-  $news_id = get_field( 'felder_verein_hauptseite_news' );
-  $association_name = get_field( 'felder_verein_hauptseite_vereinsname' );
-  $association_url = get_field( 'felder_verein_hauptseite_url' );
-  $menu_name = get_field( 'felder_verein_hauptseite_menu' );
-  $color = get_field( 'felder_verein_hauptseite_farbe' );
+  $circle_id = get_field( 'felder_verein_hauptseite_kreise', $parent_id );
+  $association_name = get_field( 'felder_verein_hauptseite_vereinsname', $parent_id );
+  $association_url = get_field( 'felder_verein_hauptseite_url', $parent_id );
+  $menu_name = get_field( 'felder_verein_hauptseite_menu', $parent_id );
+  $color = get_field( 'felder_verein_hauptseite_farbe', $parent_id );
 ?>
 
 <?php require(locate_template('circles.php')); ?>
 
 <div class="main_container">
-  <?php require(locate_template('teaser.php')); ?>
-
-  <?php require(locate_template('event-box.php')); ?>
-
-  <?php require(locate_template('news-box.php')); ?>
+  <?php
+    wp_reset_query();
+    echo $post->post_content;
+  ?>
 </div>
 
 <div class="right_sidebar_container">

@@ -1,0 +1,34 @@
+/*
+ * Stylesheet for the association pages
+ */
+
+.association_menu {
+  width: 100%;
+  text-align: center;
+  padding-top: 2em;
+  padding-bottom: 2em;
+  margin-bottom: 2em;
+  color: #FFF;
+}
+
+.association_menu ul {
+  list-style-type:none;
+  list-style-image:none;
+  padding-left: 0;
+}
+
+.association_menu li {
+  padding-top: 1.2em;
+}
+
+.association_menu li a {
+  text-decoration: none;
+  color: #FFF;
+}
+
+.association_menu_headline {
+}
+
+.association_menu_url {
+}
+

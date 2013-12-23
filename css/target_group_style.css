@@ -34,3 +34,29 @@
   font-size: 1.5em;
   color: #c62026;
 }
+
+.target_group_contact_headline {
+  font-size: 1.2em;
+  color: #c62026;
+  padding-top: 1.5em;
+}
+
+.target_group_contact_container {
+  display: inline-block;
+  width: 100%;
+}
+
+.target_group_contact_entry {
+  width: 33%;
+  clear: both;
+  display: inline-block;
+}
+
+.target_group_contact_image {
+  width: 87px;
+  display: block;
+}
+
+.target_group_content {
+  padding-top: 1.5em;
+}
