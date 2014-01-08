@@ -48,6 +48,8 @@ p {
   padding-top: 0;
   background-image: url(images/header_background.png);
   background-position:0px 100%;
+  background-size: 100%;
+  background-repeat:no-repeat;
 }
 
 .headlogo {
@@ -176,18 +178,14 @@ hr.veryheight {
   background: url(images/footer_background.png);
   padding-top: 25px;
   padding-bottom: 20px;
+  background-size: 100%;
+  background-repeat:no-repeat;
 }
 
 /* main content */
 .main_container {
   float: left;
   width: 75%;
-}
-
-/* Sidebar */
-.right_sidebar_container {
-  float: right;
-  width: 20%;
 }
 
 /* First contact */
@@ -374,4 +372,57 @@ a.evtermine_title:hover {
 
 .circle_image {
   width: 100%;
+}
+
+/* Flexible layout */
+@media only screen
+and (min-width : 320px)
+and (max-width : 480px) {
+
+.headlogo {
+  display: none;
+}
+
+.right_sidebar_container {
+  display: none;
+}
+
+.circle_span {
+  text-align: center;
+  display: inline-block;
+  width: 25%;
+  font-weight: bold;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+}
+
+@media only screen
+and (min-width : 481px) {
+
+.headlogo {
+  width: 205px;
+  height: 70px;
+  float: left;
+  margin-top: 0.5em;
+  margin-left: 0.5em;
+  padding-top: 0;
+}
+
+/* Sidebar */
+.right_sidebar_container {
+  float: right;
+  width: 20%;
+}
+
+.circle_span {
+  text-align: center;
+  display: inline-block;
+  width: 12%;
+  font-weight: bold;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
 }

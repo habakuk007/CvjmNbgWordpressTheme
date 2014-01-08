@@ -229,4 +229,4 @@ function safely_add_stylesheet() {
 }
 
 add_action( 'wp_enqueue_scripts', 'safely_add_stylesheet' );
-?>
+

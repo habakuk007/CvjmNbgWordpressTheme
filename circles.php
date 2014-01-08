@@ -28,22 +28,27 @@
 
     while( $news_query->have_posts() ) {
       $news_query->the_post();
-      $args = array(
-        'post_type' => 'attachment',
-        'numberposts' => -1,
-        'post_status' => null,
-        'post_parent' => $post->ID
-      );
 
-      $attachments = get_posts( $args );
-      if ( $attachments ) {
-        foreach ( $attachments as $attachment ) {
-          echo '<span class="circle_span">';
-          $image_data = wp_get_attachment_image_src( $attachment->ID );
-          echo '<img src=" ' . $image_data[0] . '" class="circle_image" />';
-          echo '<br>' . get_the_title() . '</span>';
+      $number = rand(0,2);
+
+      do {
+        switch ($number) {
+        case 0:
+          $picture_name = 'picture_one';
+          break;
+        case 1:
+          $picture_name = 'picture_two';
+          break;
+        case 2:
+          $picture_name = 'picture_three';
+          break;
         }
-      }
+      } while ($number-- > 0 && strlen(get_field($picture_name, $post->ID)) == 0);
+
+      echo '<span class="circle_span">';
+      echo '<a href="' . get_field('page_link', $post->ID) . '">' . "\n";
+      echo '<img src=" ' . get_field($picture_name, $post->ID) . '" class="circle_image" /></a>';
+      echo '<br>' . get_the_title() . '</span>';
     }
   ?>
 </div>
