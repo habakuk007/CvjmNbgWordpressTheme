@@ -7,13 +7,13 @@ get_header();
 /* Save the values for our sub modules, because our page fields are gone
  * if the first sub module makes a new query */
   $circle_id = get_field( 'vh_category_circles' );
-  $teaser_id = get_field( 'fh_category_teaser' );
-  $event_vid = get_field( 'fh_ev_vid' );
-  $news_id = get_field( 'fh_category_news' );
-  $association_name = get_field( 'fh_association_name' );
-  $association_url = get_field( 'fh_url' );
-  $menu_name = get_field( 'fh_menu' );
-  $color = get_field( 'fh_color' );
+  $teaser_id = get_field( 'vh_category_teaser' );
+  $event_vid = get_field( 'vh_ev_vid' );
+  $news_id = get_field( 'vh_category_news' );
+  $association_name = get_field( 'vh_association_name' );
+  $association_url = get_field( 'vh_url' );
+  $menu_name = get_field( 'vh_menu' );
+  $color = get_field( 'vh_color' );
 ?>
 
 <?php require(locate_template('circles.php')); ?>
