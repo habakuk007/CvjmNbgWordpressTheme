@@ -47,7 +47,7 @@ p {
   margin-top: 0;
   padding-top: 0;
   background-image: url(images/header_background.png);
-  background-position:0px 100%;
+  background-position: 0px 100%;
   background-size: 100%;
   background-repeat:no-repeat;
 }
@@ -83,23 +83,8 @@ p {
   padding-left: 0px;
 }
 
-.header_top_menu {
-  text-align: right;
-  font-size: small;
-  padding-top: 1px;
-  padding-bottom: 0;
-  padding-right: 0.5em;
-  margin-bottom: 0;
-}
-
 .languages {
   font-size: small;
-}
-
-.linelist {
-  display: inline;
-  list-style-type: none;
-  padding-right: 1em;
 }
 
 .mainmenu {
@@ -120,6 +105,7 @@ p {
   right: 5em;
   border:1px solid #888;
   background-color:#fff;
+  display: block;
   border-collapse:collapse;
   -moz-box-shadow:    3px 3px 3px #ccc;
   -webkit-box-shadow: 3px 3px 3px #ccc;
@@ -335,7 +321,6 @@ a.evtermine_title:hover {
     z-index:10000;
     /* styling */
     background-color:#CCC;
-    width:675px;
     min-height:200px;
     border:1px solid #666;
     /* CSS3 styling for latest browsers */
@@ -383,6 +368,10 @@ and (max-width : 480px) {
   display: none;
 }
 
+.header_top_menu {
+  display: none;
+}
+
 .right_sidebar_container {
   display: none;
 }
@@ -394,6 +383,23 @@ and (max-width : 480px) {
   font-weight: bold;
   margin-left: 5px;
   margin-right: 5px;
+}
+
+.linelist {
+  list-style-type: none;
+  padding-right: 1em;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-right: 3px;
+}
+
+.header-menu-list {
+  margin: 0;
+  padding: 0;
+}
+
+.simple_overlay {
+  width: 95%;
 }
 
 }
@@ -410,6 +416,15 @@ and (min-width : 481px) {
   padding-top: 0;
 }
 
+.header_top_menu {
+  text-align: right;
+  font-size: small;
+  padding-top: 1px;
+  padding-bottom: 0;
+  padding-right: 0.5em;
+  margin-bottom: 0;
+}
+
 /* Sidebar */
 .right_sidebar_container {
   float: right;
@@ -423,6 +438,17 @@ and (min-width : 481px) {
   font-weight: bold;
   margin-left: 5px;
   margin-right: 5px;
+}
+
+.linelist {
+  display: inline;
+  list-style-type: none;
+  padding-right: 1em;
+}
+
+.simple_overlay {
+  width: 70%;
+  max-width: 800px;
 }
 
 }
