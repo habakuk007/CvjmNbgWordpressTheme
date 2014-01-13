@@ -21,7 +21,7 @@ get_header(); ?>
 <div class="main_container">
   <?php $teaser_name = 'teaser'; require(locate_template('teaser.php')); ?>
 
-  <?php $event_vid = '1495,1496,1497,1498,1499,1500'; require(locate_template('event-box.php')); ?>
+  <?php $event_vid = '1495,1496,1497,1498,1499,1500'; $event_add_query = 'highlight=high'; require(locate_template('event-box.php')); ?>
 
   <?php $news_name = 'news'; require(locate_template('news-box.php')); ?>
 </div>
@@ -41,7 +41,7 @@ get_header(); ?>
   </div>
   <div class="map_container">
     <!--<img src="<?php bloginfo('template_directory'); ?>/images/map.png" class="map_image"/>-->
-    <iframe width="260" height="260" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.de/maps/ms?msa=0&amp;msid=202299304858622703127.0004eca77fc359d632122&amp;ie=UTF8&amp;t=m&amp;ll=49.430626,11.074905&amp;spn=0.116109,0.179214&amp;z=11&amp;output=embed"></iframe>
+    <iframe width="100%" height="260" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.de/maps/ms?msa=0&amp;msid=202299304858622703127.0004eca77fc359d632122&amp;ie=UTF8&amp;t=m&amp;ll=49.430626,11.074905&amp;spn=0.116109,0.179214&amp;z=11&amp;output=embed"></iframe>
   </div>
   <?php the_widget('Losung_Widget', ''); ?>
   <div class="photo_galery_container">

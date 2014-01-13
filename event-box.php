@@ -5,6 +5,7 @@
        * You can set the following variables:
        * $event_count: Number of events to display
        * $event_vid: Veranstalter-ID used at Evangelische Termine
+       * $event_add_query: Additional query options
        **/
 ?>
 <div class="eventbox">
@@ -18,7 +19,11 @@
       if (!isset($event_vid)) {
         $event_vid = 1498;
       }
-      the_widget('EvTermine_Widget', array('reqstr' => 'vid=' . $event_vid . '&itemsPerPage=' . $event_count));
+      $query_string = 'vid=' . $event_vid . '&itemsPerPage=' . $event_count;
+      if (isset($event_add_query) && strlen($event_add_query) > 0) {
+        $query_string .= '&' . $event_add_query;
+      }
+      the_widget('EvTermine_Widget', array('reqstr' => $query_string));
     ?>
   </div>
 </div>

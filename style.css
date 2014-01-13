@@ -23,9 +23,9 @@ This theme, like WordPress, is licensed under the GPL.
 
 /* Main settings */
 body {
-  font-family: MyriadPro, Arial;
   margin: 0;
   padding: 0;
+  font-family: MyriadPro, Arial;
 }
 
 p {
@@ -41,11 +41,11 @@ p {
 
 /* Header elements */
 .header {
-  width: 100%;
+  width: 98%;
   margin-left: auto;
   margin-right: auto;
   margin-top: 0;
-  padding-top: 0;
+  padding: 0 1% 0 1%;
   background-image: url(images/header_background.png);
   background-position: 0px 100%;
   background-size: 100%;
@@ -171,7 +171,6 @@ hr.veryheight {
 /* main content */
 .main_container {
   float: left;
-  width: 75%;
 }
 
 /* First contact */
@@ -248,17 +247,19 @@ hr.veryheight {
 
 /* Style der Losung */
 .widget_losung {
-  width: 100%;
   background-color: #a6aae9;
   clear: both;
+  padding: 0.5em;
 }
 
 .losung-text {
   font-size: small;
+  color: #FFFFFF;
 }
 
 .losung-versangabe {
   font-size: xx-small;
+  color: #FFFFFF;
 }
 
 /* New box element */
@@ -372,6 +373,10 @@ and (max-width : 480px) {
   display: none;
 }
 
+.main_container {
+  width: 75%;
+}
+
 .right_sidebar_container {
   display: none;
 }
@@ -425,10 +430,16 @@ and (min-width : 481px) {
   margin-bottom: 0;
 }
 
+.main_container {
+  width: 74%;
+  padding-left: 1%;
+}
+
 /* Sidebar */
 .right_sidebar_container {
   float: right;
-  width: 20%;
+  width: 19%;
+  padding-right: 1%
 }
 
 .circle_span {
