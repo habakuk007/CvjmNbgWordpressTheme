@@ -18,7 +18,23 @@ function register_my_menus() {
   register_nav_menu('schwaig-menu', __( 'Schwaig Menu' ));
 }
 
+function adjust_roles() {
+  $roleObject = get_role( 'editor' );
+  if (!$roleObject->has_cap( 'edit_theme_options' ) ) {
+      $roleObject->add_cap( 'edit_theme_options' );
+  }
+}
+
 add_action ('init', 'register_my_menus');
+add_action ('init', 'adjust_roles');
+
+function hide_menu() {
+    remove_submenu_page( 'themes.php', 'themes.php' ); // hide the theme selection submenu
+    remove_submenu_page( 'themes.php', 'widgets.php' ); // hide the widgets submenu
+	remove_submenu_page( 'themes.php', 'customize.php' ); // hide the customize submenu
+}
+
+add_action('admin_head', 'hide_menu');
 
 /**********************
  * Walker function for footer menu

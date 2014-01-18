@@ -10,7 +10,7 @@
 ?>
 <div class="eventbox">
   <h1 class="event_headline">N&auml;chste Termine</h1>
-  <hr class="partseperator">
+  <div class="partseperator"></div>
   <div class="event_list">
     <?php
       if (!isset($event_count)) {

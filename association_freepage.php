@@ -6,14 +6,24 @@ get_header();
 
 /* We get all values for the standard things from the parent page, so we need the ID of it */
   global $post;
-  $parent_id = $post->post_parent;
+  
+  if ($post->post_parent != 0)
+  {
+    $parent_id = $post->ID;
+    $next_id = get_post($parent_id)->post_parent;
+    while ($next_id != 0) {
+	  $parent_id = $next_id;
+      $next_id = get_post($parent_id)->post_parent;
+	}
+  }
+
 /* Save the values for our sub modules, because our page fields are gone
  * if the first sub module makes a new query */
-  $circle_id = get_field( 'felder_verein_hauptseite_kreise', $parent_id );
-  $association_name = get_field( 'felder_verein_hauptseite_vereinsname', $parent_id );
-  $association_url = get_field( 'felder_verein_hauptseite_url', $parent_id );
-  $menu_name = get_field( 'felder_verein_hauptseite_menu', $parent_id );
-  $color = get_field( 'felder_verein_hauptseite_farbe', $parent_id );
+  $circle_id = get_field( 'vh_category_circles', $parent_id );
+  $association_name = get_field( 'vh_association_name', $parent_id );
+  $association_url = get_field( 'vh_url', $parent_id );
+  $menu_name = get_field( 'vh_menu', $parent_id );
+  $color = get_field( 'vh_color', $parent_id );
 ?>
 
 <?php require(locate_template('circles.php')); ?>

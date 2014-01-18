@@ -48,7 +48,9 @@
       echo '<span class="circle_span">';
       echo '<a href="' . get_field('page_link', $post->ID) . '">' . "\n";
       echo '<img src=" ' . get_field($picture_name, $post->ID) . '" class="circle_image" /></a>';
-      echo '<br>' . get_the_title() . '</span>';
+      //echo '<br>' . get_the_title() . '</span>';
+      /* One Unterschrift */
+      echo '</span>';
     }
   ?>
 </div>

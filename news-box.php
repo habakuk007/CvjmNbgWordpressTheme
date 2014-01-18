@@ -10,7 +10,7 @@
 ?>
 <div class="newsbox">
   <h1 class="news_headline">News</h1>
-  <hr class="partseperator">
+  <div class="partseperator"></div>
   <div class="news_list">
   <?php
     $query_args = array(

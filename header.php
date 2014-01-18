@@ -66,22 +66,26 @@
                             'menu_class'      => 'header-menu-list',
                             'walker' => new Walker_Header_Popup_Menu() ) ); ?>
   <script type="text/javascript" charset="utf-8">
-    $('#menu-header-menu li').hover(
-      function() {
+    $('#menu-hauptseite-menue-oben li').hover(
+      function(e) {
+        var x = $(document).width() - e.clientX;
         $(this).find('ul').css('visibility', 'visible');
+		$(this).find('ul').css('right', x - 10);
       },
       function() {
         $(this).find('ul').css('visibility', 'hidden');
       }
     );
-    $('#menu-header-menu li ul li a').click(
+    $('#menu-hauptseite-menue-oben li ul li a').click(
       function() {
         $(this).find('ul').css('visibility', 'visible');
       }
     );
 
     $(document).ready(function() {
-      $("a[rel]").overlay();
+      $("a[rel]").overlay({
+        fixed: false
+      });
     });
 
   // FlexMenu
@@ -100,4 +104,4 @@
   });
   </script>
 </div>
-<hr class="fullseperator veryheight">
+<!--<hr class="fullseperator veryheight">-->
