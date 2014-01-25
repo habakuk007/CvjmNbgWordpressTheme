@@ -68,24 +68,92 @@
   <script type="text/javascript" charset="utf-8">
     $('#menu-hauptseite-menue-oben li').hover(
       function(e) {
-        var x = $(document).width() - e.clientX;
-        $(this).find('ul').css('visibility', 'visible');
-		$(this).find('ul').css('right', x - 10);
+	    if ($(this).hasClass('menu-item-has-children')) {
+          //var x = $(document).width() - e.clientX - ($(this).find('ul').width() / 2);
+	      //x = $(document).width() - ($(this).offset().left + $(this).find('ul').width());
+		  var x = $(this).position().left;
+		  if (x < 0) {
+		    x = 0;
+		  }
+          $(this).find('ul').css('visibility', 'visible');
+		  $(this).find('ul').css('left', x);
+		}
+		$(this).css('background-color', '#CCCCCC');
+		$(this).children('a').css('color', '#C5121D');
       },
       function() {
-        $(this).find('ul').css('visibility', 'hidden');
+	    if ($(this).hasClass('menu-item-has-children')) {
+          $(this).find('ul').css('visibility', 'hidden');
+		  $(this).css('background-color', '#FFFFFF');
+		  $(this).children('a').css('color', '#000000');
+		} else if ($(this).hasClass('linelist')) {
+		  $(this).css('background-color', '#FFFFFF');
+		  $(this).children('a').css('color', '#000000');
+		} else {
+		  $(this).children('a').css('color', '#FFFFFF');
+		}
       }
     );
     $('#menu-hauptseite-menue-oben li ul li a').click(
       function() {
-        $(this).find('ul').css('visibility', 'visible');
+	    if ($(this).hasClass('menu-item-has-children')) {
+          //var x = $(document).width() - e.clientX - ($(this).find('ul').width() / 2);
+	      //x = $(document).width() - ($(this).offset().left + $(this).find('ul').width());
+		  var x = $(this).position().left;
+		  if (x < 0) {
+		    x = 0;
+		  }
+          $(this).find('ul').css('visibility', 'visible');
+		  $(this).find('ul').css('left', x);
+		
+		  $(this).css('background-color', '#CCCCCC');
+		  $(this).css('color', '#C5121D');
+		}
       }
     );
+
+	var $allVideos;
+	var $fluidEl;
+	
+    // When the window is resized we resize all videos
+    $(window).resize(function() {
+      var $newWidth = $fluidEl.width();
+
+      // Resize all videos according to their own aspect ratio
+      $allVideos.each(function() {
+        var $el = $(this);
+        $el
+          .width($newWidth)
+          .height($newWidth * $el.data('aspectRatio'));
+      });
+
+    // Kick off one resize to fix all videos on page load
+    });
 
     $(document).ready(function() {
       $("a[rel]").overlay({
         fixed: false
       });
+	  
+      // Embed video
+      // Find all YouTube and vimeo videos
+      $allVideos = $("iframe[src^='http://www.youtube.com'],iframe[src^='http://player.vimeo.com']");
+
+      // The element that is fluid width
+      $fluidEl = $(".main_container");
+
+      // Figure out and save aspect ratio for each video
+      $allVideos.each(function() {
+        $(this)
+          .data('aspectRatio', this.height / this.width)
+
+          // and remove the hard coded width/height
+          .removeAttr('height')
+          .removeAttr('width');
+
+      });
+  
+      $(window).resize();
     });
 
   // FlexMenu
@@ -102,6 +170,7 @@
     open: function(){}, // Function: Open callback
     close: function(){} // Function: Close callback
   });
+
   </script>
 </div>
 <!--<hr class="fullseperator veryheight">-->

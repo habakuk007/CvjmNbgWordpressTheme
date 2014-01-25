@@ -15,7 +15,12 @@
     <!--<img src="<?php bloginfo('template_directory'); ?>/images/map.png" class="map_image"/>-->
     <iframe width="100%" height="260" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.de/maps/ms?msa=0&amp;msid=202299304858622703127.0004eca77fc359d632122&amp;ie=UTF8&amp;t=m&amp;ll=49.430626,11.074905&amp;spn=0.116109,0.179214&amp;z=11&amp;output=embed"></iframe>
   </div>
-  <?php the_widget('Losung_Widget', ''); ?>
+  <div class="losung_title_image_container">
+    <a href="http://www.grasundufer.de/index.php?view=newsfeed&catid=46%3Achristliche-feeds&id=16-erfde-worte-zur-losung&option=com_newsfeeds&Itemid=104" target="_blank">
+    <img src="<?php bloginfo('template_directory'); ?>/images/tageslosung_logo.jpg" class="losung_image">
+    </a>
+    <?php the_widget('Losung_Widget', ''); ?>
+  </div>
   <?php
     $media_query = new WP_Query(
       array(
@@ -30,7 +35,7 @@
     }
 
 	$pics = array( 'Treppenhaus_Lounge_Logo.jpg', 'Bildergalerie_Logo.jpg', 'Videogalerie_Logo.jpg');
-	$links = array( 'http://www.treppenhaus-lounge.de', 'http://www.cvjm-nuernberg.de', 'http://www.cvjm-nuernberg.de');
+	$links = array( 'http://www.treppenhaus-lounge.de', 'http://galerie.cvjm-nuernberg.de/', 'http://vimeo.com/cvjmnuernberg/videos');
 
 	$i = 0;
     foreach	($pics as $img_name) {

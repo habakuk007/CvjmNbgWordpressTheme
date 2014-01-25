@@ -25,8 +25,15 @@ function adjust_roles() {
   }
 }
 
+function add_my_query_args() { 
+    global $wp; 
+    $wp->add_query_var('evterm_hilight'); 
+	$wp->add_query_var('evterm_pageid'); 
+}
+
 add_action ('init', 'register_my_menus');
 add_action ('init', 'adjust_roles');
+add_action('init','add_my_query_args');
 
 function hide_menu() {
     remove_submenu_page( 'themes.php', 'themes.php' ); // hide the theme selection submenu
@@ -73,11 +80,66 @@ class Footer_Menu_Walker extends Walker_Nav_Menu {
   }
 }
 
+function menu_has_next($sorted_menu_items, $args) {
+    $parents = array();
+
+	end($sorted_menu_items)->is_last = true;
+
+    return $sorted_menu_items;
+}
+
+add_filter('wp_nav_menu_objects', 'menu_has_next', 10, 2);
+
 /**********************
  * Walker function for top menu
  **********************/
 class Top_Menu_Walker extends Walker_Nav_Menu {
-  // Each item get's the class footer_menu_item_depth_x
+  /**
+   * @see Walker::start_lvl()
+   * @since 3.0.0
+   *
+   * @param string $output Passed by reference. Used to append additional content.
+   * @param int $depth Depth of page. Used for padding.
+   */
+  function start_lvl( &$output, $depth = 0, $args = array() ) {
+    return;
+  }
+  
+  /**
+  * Ends the list of after the elements are added.
+  *
+  * @see Walker::end_lvl()
+  *
+  * @since 3.0.0
+  *
+  * @param string $output Passed by reference. Used to append additional content.
+  * @param int    $depth  Depth of menu item. Used for padding.
+  * @param array  $args   An array of arguments. @see wp_nav_menu()
+  */
+  function end_lvl( &$output, $depth = 0, $args = array() ) {
+    return;
+  }
+  
+  function start_el(&$output, $item, $depth=0, $args=array()) {
+    $attributes  = ! empty( $item->attr_title ) ? ' title="'  . esc_attr( $item->attr_title ) .'"' : '';
+    $attributes .= ! empty( $item->target )     ? ' target="' . esc_attr( $item->target     ) .'"' : '';
+    $attributes .= ! empty( $item->xfn )        ? ' rel="'    . esc_attr( $item->xfn        ) .'"' : '';
+    $attributes .= ! empty( $item->url )        ? ' href="'   . esc_attr( $item->url        ) .'"' : '';
+    // We want normal text for the link
+    $attributes .= ' class="clearlink"';
+	
+    $item_output = '<a'. $attributes .'>';
+    $item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
+    $item_output .= '</a>';
+	if (!isset($item->is_last))
+	{
+	  $item_output .= '&nbsp;|&nbsp;';
+	}
+	
+	$output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
+  }
+  
+  /*
   function start_el(&$output, $item, $depth=0, $args=array()) {
     $indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
 
@@ -106,9 +168,26 @@ class Top_Menu_Walker extends Walker_Nav_Menu {
     $item_output .= '<a'. $attributes .'>';
     $item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
     $item_output .= '</a>';
+	if (!isset($item->is_last))
+	{
+	  $item_output .= '&nbsp;|&nbsp;';
+	}
     $item_output .= $args->after;
 
     $output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
+  }
+  */
+  
+  /**
+   * @see Walker::end_el()
+   * @since 3.0.0
+   *
+   * @param string $output Passed by reference. Used to append additional content.
+   * @param object $item Page data object. Not used.
+   * @param int $depth Depth of page. Not Used.
+   */
+  function end_el( &$output, $item, $depth = 0, $args = array() ) {
+
   }
 }
 
@@ -162,8 +241,14 @@ class Walker_Header_Popup_Menu extends Walker_Nav_Menu {
     $attributes .= ! empty( $item->target )     ? ' target="' . esc_attr( $item->target     ) .'"' : '';
     $attributes .= ! empty( $item->xfn )        ? ' rel="'    . esc_attr( $item->xfn        ) .'"' : '';
     $attributes .= ! empty( $item->url )        ? ' href="'   . esc_attr( $item->url        ) .'"' : '';
-    // We want normal text for the link
-    $attributes .= ' class="clearlink"';
+    if ($depth==0)
+    {
+	  // We want normal text for the link
+      $attributes .= ' class="clearlink"';
+	} else {
+      // We want normal text for the link
+      $attributes .= ' class="whitelink"';
+	}
 
     $item_output = $args->before;
     $item_output .= '<a'. $attributes .'>';

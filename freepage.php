@@ -10,7 +10,6 @@ get_header(); ?>
 <div class="main_container">
   <?php
     wp_reset_query();
-    //echo $post->post_content;
 	echo apply_filters('the_content', $post->post_content);
   ?>
 </div>

@@ -60,6 +60,11 @@ p {
   color: #000;
 }
 
+.whitelink {
+  text-decoration: none;
+  color: #FFF;
+}
+
 /* Header elements */
 .header {
   width: 98%;
@@ -104,19 +109,15 @@ p {
 }
 
 .header-sub-menu-popup {
+  background-color: #CCCCCC;
   list-style-type:none;
   list-style-image:none;
   position:absolute;
   visibility:hidden;
   text-align: left;
   margin:0;
-  padding-left:0.5em;
-  padding-right:0.5em;
-  padding-top: 0.1em;
-  padding-bottom: 0.1em;
-  right: 5em;
-  border:1px solid #888;
-  background-color:#fff;
+  padding: 0.1em 0.5em;
+  border:0;
   display: block;
   border-collapse:collapse;
   -moz-box-shadow:    3px 3px 3px #ccc;
@@ -148,6 +149,7 @@ p {
     border-bottom: 1px solid #ffffff; /*Your bottom color*/
 	width: 25%;
 	margin-left: 0;
+	clear:both;
 }
 
 hr.veryheight {
@@ -237,11 +239,23 @@ hr.veryheight {
 }
 
 /* Style der Losung */
+.losung_title_image_container {
+  padding: 0;
+  margin: 1em 0 0 0;
+}
+
+.losung_image {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  display: block;
+}
+
 .widget_losung {
-  background-color: #40749B;
+  background-color: #05233A;
   clear: both;
   padding: 0.5em;
-  margin-top: 1em;
+  margin: 0em;
   text-align: center;
 }
 
@@ -286,6 +300,14 @@ a.newstitle:hover {
 }
 
 /* Event box */
+.event_headline_container {
+}
+
+.evterm_hilight_image {
+  height: 1.5em;
+  float: right
+}
+
 .event_headline {
   font-size: medium;
   color: #d2232b;
@@ -310,6 +332,16 @@ a.evtermine_title:hover {
 
 .evtermine_desc {
   font-size: small;
+}
+
+.event_navigation {
+  width:100%;
+  text-align: right;
+}
+
+.event_nav_icon {
+  width: 1.5em;
+  vertical-align: middle;
 }
 
 /* the overlayed element */
@@ -391,7 +423,7 @@ and (max-width : 480px) {
 }
 
 .main_container {
-  width: 75%;
+  width: 100%;
 }
 
 .right_sidebar_container {
@@ -409,7 +441,8 @@ and (max-width : 480px) {
 
 .linelist {
   list-style-type: none;
-  padding-right: 1em;
+  margin-right: 1em;
+  padding-right: 3px;
   padding-top: 3px;
   padding-bottom: 3px;
   padding-right: 3px;
@@ -470,7 +503,7 @@ and (min-width : 481px) {
 .linelist {
   display: inline;
   list-style-type: none;
-  padding-right: 1em;
+  margin-right: 1em;
 }
 
 .simple_overlay {

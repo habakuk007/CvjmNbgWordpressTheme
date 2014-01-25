@@ -14,6 +14,7 @@
   position: absolute;
   display: block;
   zoom: 1;
+  overflow: visible;
 }
 
 .nav-collapse.opened {
@@ -49,12 +50,11 @@ and (min-width : 320px)
 and (max-width : 480px) {
   .js .nav-collapse {
     border: 1px solid;
-    width: 50%;
+    width: 70%;
     background-color: #FFFFFF;
-    left: 50%;
+    left: 30%;
     margin: 0;
     padding: 0;
-    overflow: hidden;
   }
 }
 
@@ -62,7 +62,6 @@ and (max-width : 480px) {
 and (min-width : 481px) {
   .js .nav-collapse {
     position: relative;
-    overflow: visible;
   }
   .js .nav-collapse.closed {
     max-height: none;

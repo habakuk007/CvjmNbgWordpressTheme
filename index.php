@@ -21,7 +21,7 @@ get_header(); ?>
 <div class="main_container">
   <?php $teaser_name = 'teaser'; require(locate_template('teaser.php')); ?>
 
-  <?php $event_vid = '1495,1496,1497,1498,1499,1500'; $event_add_query = 'highlight=high'; require(locate_template('event-box.php')); ?>
+  <?php $event_vid = '1495,1496,1497,1498,1499,1500'; $event_show_filter = 'yes'; require(locate_template('event-box.php')); ?>
 
   <?php $news_name = 'news'; require(locate_template('news-box.php')); ?>
 </div>
