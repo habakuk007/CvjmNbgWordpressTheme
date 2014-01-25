@@ -339,3 +339,52 @@ function safely_add_stylesheet() {
 
 add_action( 'wp_enqueue_scripts', 'safely_add_stylesheet' );
 
+// Additional shortcuts for content editing
+// [evtermine] Shortcut
+function evtermine_func( $atts ) {
+  extract( shortcode_atts( array(
+    'count' => null,
+    'vid' => null,
+    'query' => null
+  ), $atts ) );
+  ob_start();
+  $event_count = $count;
+  $event_vid = $vid;
+  $event_add_query = $query;
+  require locate_template('event-box.php');
+  $ev_output = ob_get_clean();
+
+  return $ev_output;
+}
+
+add_shortcode( 'evtermine', 'evtermine_func' );
+
+// Ajax handling functions
+// Reload ev Termine through ajax call
+function evtermine_ajax( ) {
+
+  header( "Content-Type: text/plain" );
+
+  ob_start();
+  if (array_key_exists('count', $_POST)) {
+    $event_count = $_POST['count'];
+  }
+  if (array_key_exists('vid', $_POST)) {
+    $event_vid = $_POST['vid'];
+  }
+  if (array_key_exists('query', $_POST)) {
+    $event_add_query = $_POST['query'];
+  }
+  if (array_key_exists('filter', $_POST)) {
+    $event_show_filter = $_POST['filter'];
+  }
+  require locate_template('event-box.php');
+  $ev_output = ob_get_clean();
+
+  echo $ev_output;
+
+  exit;
+}
+
+add_action( 'wp_ajax_nopriv_evtermine-ajax', 'evtermine_ajax' );
+add_action( 'wp_ajax_evtermine-ajax', 'evtermine_ajax' );
