@@ -15,6 +15,7 @@
   display: block;
   zoom: 1;
   overflow: visible;
+  clear: right;
 }
 
 .nav-collapse.opened {

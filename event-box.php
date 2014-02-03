@@ -60,7 +60,7 @@
       echo 'data-count="' . $event_count . '" data-query="' . $newArgs . '" data-filter="' . $event_show_filter . '">' . "\n";
 	  echo '<img src="';
       echo get_stylesheet_directory_uri();
-	  echo '/images/' . $image . '" alt="'. $alt_text . '" class="evterm_hilight_image" />' . "\n";
+	  echo '/images/' . $image . '" title="'. $alt_text . '" class="evterm_hilight_image" />' . "\n";
 	  echo '</a>' . "\n";
 	}
   ?>
@@ -73,7 +73,7 @@
       if (isset($event_add_query) && strlen($event_add_query) > 0) {
         $query_string .= '&' . $event_add_query;
       }
-      the_widget('EvTermine_Widget', array('reqstr' => $query_string));
+      the_widget('EvTermine_Widget', array('reqstr' => $query_string, 'filter' => $event_show_filter));
     ?>
   </div>
 </div>

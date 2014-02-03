@@ -8,6 +8,7 @@ function register_my_menus() {
   register_nav_menu('top-short-menu',__('Top Short Menu'));
   register_nav_menu('header-menu',__( 'Header Menu' ));
   register_nav_menu('footer-menu', __( 'Footer Menu' ));
+  register_nav_menu('languages-menu', __('Languages Menu'));
 
   // Association menus
   register_nav_menu('eibach-menu', __( 'Eibach Menu' ));

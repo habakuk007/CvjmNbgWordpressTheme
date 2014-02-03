@@ -34,10 +34,7 @@ $news_id = get_field( 'categorie_news' )?>
       'post_type' => 'post',
       'post_status' => 'publish',
       'cat' => get_field( 'responsible_contact_category' ),
-      'posts_per_page' => -1,
-      'meta_key'    => 'responsible_position',
-      'orderby'   => 'meta_value_num',
-      'order'     => 'ASC'
+      'posts_per_page' => -1
       )
     );
 

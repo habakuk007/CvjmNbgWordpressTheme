@@ -82,6 +82,20 @@ p {
   text-align: right;
 }
 
+.header_right_nav_container {
+  float: right;
+  margin: 0 0 1em 0;
+}
+
+.languages {
+   margin-top: 0.2em;
+}
+
+.languages  ul{
+  padding: 0;
+  margin: 0;
+}
+
 .searchform {
   padding-top: 0;
   margin-top: 0;
@@ -98,10 +112,6 @@ p {
   height: 1.1em;
   margin-left: 0px;
   padding-left: 0px;
-}
-
-.languages {
-  font-size: small;
 }
 
 .mainmenu {
@@ -225,7 +235,8 @@ hr.veryheight {
 }
 
 .map_image {
-  width: 100%;
+  max-width: 100%;
+  height: auto;
 }
 
 .sidebar_image_container {
@@ -422,8 +433,14 @@ and (max-width : 480px) {
   display: none;
 }
 
+.languages {
+  font-size: x-small;
+}
+
 .main_container {
-  width: 100%;
+  width: 98%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .right_sidebar_container {
@@ -471,12 +488,18 @@ and (min-width : 481px) {
 }
 
 .header_top_menu {
-  text-align: right;
   font-size: small;
-  padding-top: 1px;
-  padding-bottom: 0;
-  padding-right: 0.5em;
+  padding: 0.5em 0 0.5em 0;
   margin: 0 0 0 0;
+}
+
+.header_top_menu  ul {
+  padding: 0;
+  margin: 0;
+}
+
+.languages {
+  font-size: small;
 }
 
 .main_container {
