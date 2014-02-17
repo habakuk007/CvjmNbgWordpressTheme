@@ -19,16 +19,47 @@ get_header(); ?>
 <?php $circle_name = 'circles_main'; require(locate_template('circles.php')); ?>
 
 <div class="main_container">
-  <h1>Suchergebnisse</h1>
+  <h1 class="search_headline">Seiten</h1>
+  <div class="partseperator"></div>
   <?php if (have_posts()) : ?>
     <?php while (have_posts()) : the_post(); ?>
-      <h2><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></h2>
-        <div class="entry">
-          <?php the_content(); ?>
-        </div>
+	  <?php 
+	    if (strcmp(get_post_type( get_the_ID() ), 'page') == 0) {
+		  echo '<p class="search_result">';
+		  echo '<a href="';
+		  echo the_permalink();
+		  echo '" class="search_result_link">';
+		  echo the_title();
+		  echo '</a><br />';
+		  echo the_excerpt();
+		  echo '</p>';
+		}
+	  ?>
     <?php endwhile; ?>
-
-    <p align="center"><?php next_posts_link('&laquo; &Auml;ltere Eintr&auml;ge') ?> | <?php previous_posts_link('Neuere Eintr&auml;ge &raquo;') ?></p>
+  <h1 class="search_headline">News</h1>
+  <div class="partseperator"></div>
+	<?php wp_reset_query(); ?>
+	<?php while (have_posts()) : the_post(); ?>
+      <?php
+		$cats = get_the_category();
+		if ($cats) {
+		  foreach ($cats as $category) {
+			if (stripos($category->name, 'news') === 0) {
+			  echo '<p class="search_result">';
+		      echo '<a href="';
+		      echo the_permalink();
+		      echo '" class="search_result_link">';
+		      echo the_title();
+		      echo '</a><br />';
+		      echo the_excerpt();
+			  echo '</p>';
+			  break;
+			}
+		  }
+		}
+	  ?>
+	<?php endwhile; ?>
+    <!--<p align="center"><?php next_posts_link('&laquo; &Auml;ltere Eintr&auml;ge') ?> | <?php previous_posts_link('Neuere Eintr&auml;ge &raquo;') ?></p>-->
 
   <?php else : ?>
     <h2>Leider nichts gefunden</h2>

@@ -48,6 +48,7 @@ add_action('admin_head', 'hide_menu');
  * Walker function for footer menu
  **********************/
 class Footer_Menu_Walker extends Walker_Nav_Menu {
+
   // Each item get's the class footer_menu_item_depth_x
   function start_el(&$output, $item, $depth=0, $args=array()) {
     $indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
@@ -72,9 +73,17 @@ class Footer_Menu_Walker extends Walker_Nav_Menu {
     $attributes .= ! empty( $item->url )        ? ' href="'   . esc_attr( $item->url        ) .'"' : '';
 
     $item_output = $args->before;
-    $item_output .= '<a'. $attributes .'>';
+	if (! empty( $item->url )) {
+      $item_output .= '<a'. $attributes .'>';
+	} else {
+	  $item_output .= '<span class="underline">';
+	}
     $item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
-    $item_output .= '</a>';
+	if (! empty( $item->url )) {
+      $item_output .= '</a>';
+	} else {
+	  $item_output .= '</span>';
+	}
     $item_output .= $args->after;
 
     $output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
@@ -316,6 +325,19 @@ function register_my_stylesheets() {
   wp_register_style('frontpage-style', get_template_directory_uri() . '/css/frontpage_style.css', array(), $version, 'all');
   wp_register_style('target-group-style', get_template_directory_uri() . '/css/target_group_style.css', array(), $version, 'all');
   wp_register_style('association', get_template_directory_uri() . '/css/association.css', array(), $version, 'all');
+  wp_register_style('search', get_template_directory_uri() . '/css/search.css', array(), $version, 'all');
+  wp_register_style('flexslider', get_template_directory_uri() . '/css/flexslider.css', array(), $version, 'all');
+  wp_register_style('resp-nav', get_template_directory_uri() . '/css/responsive-nav.css', array(), $version, 'all');
+}
+
+function register_my_js_files() {
+  wp_register_script( 'jquery-tools', get_template_directory_uri() . '/js/jquery.tools.min.js', array(), '1.2.7', false );
+  wp_register_script( 'flexslider', get_template_directory_uri() . '/js/jquery.flexslider-min.js', array(), '2.2.0', false );
+  wp_register_script( 'resp-nav', get_template_directory_uri() . '/js/responsive-nav.min.js', array(), '0.1', false );
+  wp_register_script( 'popup-menu', get_template_directory_uri() . '/js/popup_menu.js', array(), '0.1', false );
+  wp_register_script( 'fluid-video', get_template_directory_uri() . '/js/fluid_videos.js', array(), '0.1', false );
+  wp_register_script( 'fluid-imgmap', get_template_directory_uri() . '/js/fluid_imagemaps.js', array(), '0.1', false );
+  wp_register_script( 'event-callback', get_template_directory_uri() . '/js/event_callback.js', array(), '0.1', false );
 }
 
 function add_needed_stylesheets() {
@@ -331,11 +353,30 @@ function add_needed_stylesheets() {
   if ( is_page_template( 'association.php' ) || is_page_template( 'association_freepage.php' ) ) {
     wp_enqueue_style( 'association');
   }
+  if ( is_search() ) {
+    wp_enqueue_style( 'search');
+  }
+  wp_enqueue_style( 'flexslider');
+  wp_enqueue_style( 'resp-nav');
+}
+
+function add_needed_javascript() {
+  wp_enqueue_script( 'jquery-tools' );
+  wp_enqueue_script( 'flexslider' );
+  wp_enqueue_script( 'resp-nav' );
+  wp_enqueue_script( 'popup-menu' );
+  wp_enqueue_script( 'fluid-video' );
+  wp_enqueue_script( 'fluid-imgmap' );
+  wp_enqueue_script( 'event-callback' );
+  $params = array('template_path' => get_template_directory_uri(), 'admin_url' => admin_url( 'admin-ajax.php' ));
+  wp_localize_script( 'event-callback', 'params', $params);
 }
 
 function safely_add_stylesheet() {
   register_my_stylesheets();
+  register_my_js_files();
   add_needed_stylesheets();
+  add_needed_javascript();
 }
 
 add_action( 'wp_enqueue_scripts', 'safely_add_stylesheet' );
@@ -389,3 +430,11 @@ function evtermine_ajax( ) {
 
 add_action( 'wp_ajax_nopriv_evtermine-ajax', 'evtermine_ajax' );
 add_action( 'wp_ajax_evtermine-ajax', 'evtermine_ajax' );
+
+function change_wp_search_size($query) {
+    if ( $query->is_search ) // Make sure it is a search page
+        $query->query_vars['posts_per_page'] = -1; // Change 10 to the number of posts you would like to show
+
+    return $query; // Return our modified query variables
+}
+add_filter('pre_get_posts', 'change_wp_search_size'); // Hook our custom function onto the request filter

@@ -33,14 +33,7 @@ get_header();
     <?php wp_nav_menu( array( 'theme_location' => $menu_name,
                             'container' => false) ); ?>
   </div>
-  <div class="photo_galery_container">
-    <img src="<?php bloginfo('template_directory'); ?>/images/galery.png" class="photo_galery_image"/>
-    <span class="photo_galery_label">Bildergalerie</span>
-  </div>
-  <div class="video_container">
-    <img src="<?php bloginfo('template_directory'); ?>/images/galery.png" class="video_image"/>
-    <span class="video_label">Videos</span>
-  </div>
+  <?php require(locate_template('sidebar_links.php')); ?>
 </div>
 
 <?php get_footer(); ?>

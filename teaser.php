@@ -28,6 +28,7 @@
     $teaser_query = new WP_Query( $teaser_args );
 
     $imgAvail = false;
+	$first_img = false;
     while( $teaser_query->have_posts() ) {
       $teaser_query->the_post();
       $startDate = DateTime::createFromFormat('Ymd', get_field( 'show_start' ));
@@ -40,6 +41,7 @@
           echo '<div class="flexslider">';
           echo '<ul class="slides">';
           $imgAvail = true;
+		  $first_img = get_field( 'show_image' );
         }
         echo '<li>';
         echo '<img src="';
@@ -52,5 +54,11 @@
     if ($imgAvail == true)
     {
       echo '</ul></div>';
+	  if ($first_img !== false)
+	  {
+	    echo '<noscript><img src="';
+        echo the_field( 'show_image' );
+        echo '" style="width: 98%" /></noscript>';
+	  }
     }
   ?>

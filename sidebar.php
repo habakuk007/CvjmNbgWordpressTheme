@@ -1,8 +1,6 @@
 ﻿<div class="right_sidebar_container">
   <div class="first_contact_container">
-    <h1 class="first_contact_headline">first contact</h1>
-    <p class="first_contact_desc">Interesse am CVJM? Neu in N&uuml;rnberg?</p>
-    <p class="first_contact_desc">Felder einfach ausf&uumlllen und abschicken</p>
+    <img src="<?php bloginfo('template_directory'); ?>/images/first_contact_logo.jpg" class="sidebar_header_image">
     <form>
       <input name="first_contact_mail" type="text" class="first_contact_text_input" placeholder="E-Mail Adresse">
       <input name="first_contact_name" type="text" class="first_contact_text_input" placeholder="Name">
@@ -25,36 +23,9 @@
   </div>
   <div class="losung_title_image_container">
     <a href="http://www.grasundufer.de/index.php?view=newsfeed&catid=46%3Achristliche-feeds&id=16-erfde-worte-zur-losung&option=com_newsfeeds&Itemid=104" target="_blank">
-    <img src="<?php bloginfo('template_directory'); ?>/images/tageslosung_logo.jpg" class="losung_image">
+    <img src="<?php bloginfo('template_directory'); ?>/images/tageslosung_logo.jpg" class="sidebar_header_image">
     </a>
     <?php the_widget('Losung_Widget', ''); ?>
   </div>
-  <?php
-    $media_query = new WP_Query(
-      array(
-      'post_type' => 'attachment',
-      'post_status' => 'inherit',
-      'posts_per_page' => -1,
-      )
-    );
-    $list = array();
-    foreach ($media_query->posts as $post) {
-      $list[] = wp_get_attachment_url($post->ID);
-    }
-
-	$pics = array( 'Treppenhaus_Lounge_Logo.jpg', 'Bildergalerie_Logo.jpg', 'Videogalerie_Logo.jpg');
-	$links = array( 'http://www.treppenhaus-lounge.de', 'http://galerie.cvjm-nuernberg.de/', 'http://vimeo.com/cvjmnuernberg/videos');
-
-	$i = 0;
-    foreach	($pics as $img_name) {
-      foreach ($list as $image) {
-        if (strpos($image, $img_name)) {
-          echo '<div class="sidebar_image_container">' . "\n";
-          echo '<a href="' . $links[$i] . '" target="_blank"><img src="' . $image . '" class="sidebar_image"/></a>' . "\n";
-		  echo '</div>';
-		}
-      }
-	  $i++;
-    }
-  ?>
+  <?php require(locate_template('sidebar_links.php')); ?>
 </div>

@@ -3,6 +3,7 @@
 Template Name: Zielgruppe
 */
 get_header();
+wp_reset_query();
 $news_id = get_field( 'categorie_news' )?>
 
 <div class="target_group_headline_container">
@@ -25,7 +26,8 @@ $news_id = get_field( 'categorie_news' )?>
   </div>
 </div>
 
-<h1 class="target_group_contact_headline">Ansprechpartner</h1>
+<div class="responsible_container">
+  <h1 class="target_group_contact_headline">Ansprechpartner</h1>
 
 <?php
   $count = 0;
@@ -64,6 +66,7 @@ $news_id = get_field( 'categorie_news' )?>
     $count++;
   }
 ?>
+  </div>
 </div>
 
 <div class="main_container">
@@ -71,14 +74,7 @@ $news_id = get_field( 'categorie_news' )?>
 </div>
 
 <div class="right_sidebar_container">
-  <div class="photo_galery_container">
-    <img src="<?php bloginfo('template_directory'); ?>/images/galery.png" class="photo_galery_image"/>
-    <span class="photo_galery_label">Bildergalerie</span>
-  </div>
-  <div class="video_container">
-    <img src="<?php bloginfo('template_directory'); ?>/images/galery.png" class="video_image"/>
-    <span class="video_label">Videos</span>
-  </div>
+  <?php require(locate_template('sidebar_links.php')); ?>
 </div>
 
 <?php get_footer(); ?>

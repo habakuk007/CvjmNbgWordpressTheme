@@ -1,0 +1,25 @@
+/* Search results */
+
+.search_headline {
+  font-size: medium;
+  color: #d2232b;
+}
+
+a.search_result_link {
+  text-decoration: none;
+  color: #000000;
+  font-weight: bold;
+}
+
+.search_result {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+
+a.search_result_link:hover {
+  text-decoration: underline;
+}
+
+.result_excerpt {
+  font-size: small;
+}

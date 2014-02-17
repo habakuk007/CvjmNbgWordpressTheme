@@ -3,9 +3,7 @@
  */
 
 .target_group_headline_container {
-  width: 98%;
-  padding-left: 1%;
-  padding-right: 1%;
+  clear: both;
 }
 
 .target_group_headline {
@@ -14,12 +12,6 @@
   font-size: 1.5em;
   color: #FFFFFF;
   width: 100%;
-}
-
-.target_group_desc_container {
-  width: 98%;
-  padding-left: 1%;
-  padding-right: 1%;
 }
 
 .target_group_desc_headline {
@@ -31,7 +23,6 @@
   font-size: 1.2em;
   color: #c62026;
   padding-top: 1.5em;
-  padding-left: 1%;
 }
 
 .target_group_contact_container {
@@ -61,6 +52,13 @@
 and (min-width : 320px)
 and (max-width : 480px) {
 
+.target_group_headline_container {
+  width: 98%;
+  padding-left: 1%;
+  padding-right: 1%;
+  clear: both;
+}
+
 .target_group_headline {
   padding-left: 4em;
   padding-right: 4em;
@@ -72,8 +70,20 @@ and (max-width : 480px) {
   margin-bottom: 0.2em;
 }
 
+.target_group_desc_container {
+  width: 98%;
+  padding-left: 1%;
+  padding-right: 1%;
+}
+
 .target_group_desc_col {
   width: 100%;
+}
+
+.responsible_container {
+  width: 98%;
+  padding-left: 1%;
+  padding-right: 1%;
 }
 
 .target_group_contact_entry {
@@ -84,6 +94,12 @@ and (max-width : 480px) {
 
 @media only screen
 and (min-width : 481px) {
+
+.target_group_headline_container {
+  width: 88%;
+  padding-left: 6%;
+  padding-right: 6%;
+}
 
 .target_group_headline {
   padding-left: 8em;
@@ -96,9 +112,21 @@ and (min-width : 481px) {
   margin-bottom: 0.5em;
 }
 
+.target_group_desc_container {
+  width: 88%;
+  padding-left: 6%;
+  padding-right: 6%;
+}
+
 .target_group_desc_col {
   width: 33%;
   display: inline-block;
+}
+
+.responsible_container {
+  width: 88%;
+  padding-left: 6%;
+  padding-right: 6%;
 }
 
 .target_group_contact_entry {
