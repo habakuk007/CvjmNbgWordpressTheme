@@ -119,8 +119,22 @@ and (min-width : 481px) {
 }
 
 .target_group_desc_col {
-  width: 33%;
+  width: 29%;
   display: inline-block;
+  vertical-align: top;
+}
+
+.target_group_desc_col_left {
+  padding-right: 3%;
+}
+
+.target_group_desc_col_middle {
+  padding-right: 3%;
+  padding-left: 3%;
+}
+
+.target_group_desc_col_right {
+  padding-left: 3%;
 }
 
 .responsible_container {

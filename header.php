@@ -53,7 +53,14 @@
                             'walker' => new Top_Menu_Walker() ));?>
     <div class="headerright searchform">
       <form role="search" method="get" id="searchform" action="/">
-      <input type="text" placeholder="Suchbegriff eingeben" size="30" name="s" id="s" class="search_field" />
+      <input type="text" placeholder="Suchbegriff eingeben" size="30" name="s" id="s" class="search_field"<?php 
+	    if (array_key_exists('s', $_GET)) {
+          echo 'value="' . $_GET["s"] . '"';
+        }
+      ?> />
+	  <input type="hidden" name="post_type" id="post_type" value="page" />
+	  <input type="hidden" name="orderby" id="post_type" value="title" />
+	  <input type="hidden" name="order" id="order" value="ASC" />
       <input type="image" id="searchsubmit" src="<?php bloginfo('template_directory'); ?>/images/go_button.png" class="search_go" />
       </form>
     </div>
@@ -67,4 +74,3 @@
                             'menu_class'      => 'header-menu-list',
                             'walker' => new Walker_Header_Popup_Menu() ) ); ?>
 </div>
-<!--<hr class="fullseperator veryheight">-->

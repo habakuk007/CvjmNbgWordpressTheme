@@ -12,15 +12,15 @@ $news_id = get_field( 'categorie_news' )?>
 </div>
 
 <div class="target_group_desc_container">
-  <div class="target_group_desc_col">
+  <div class="target_group_desc_col target_group_desc_col_left">
     <h1 class="target_group_desc_headline"><?php the_field( 'title_first_col' ) ?></h1>
     <p class="target_group_desc_body"><?php the_field( 'content_first_col' ) ?></p>
   </div>
-  <div class="target_group_desc_col">
+  <div class="target_group_desc_col target_group_desc_col_middle">
     <h1 class="target_group_desc_headline"><?php the_field( 'title_second_col' ) ?></h1>
     <p class="target_group_desc_body"><?php the_field( 'content_second_col' ) ?></p>
   </div>
-  <div class="target_group_desc_col">
+  <div class="target_group_desc_col target_group_desc_col_right">
     <h1 class="target_group_desc_headline"><?php the_field( 'title_third_col' ) ?></h1>
     <p class="target_group_desc_body"><?php the_field( 'content_third_col' ) ?></p>
   </div>

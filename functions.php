@@ -32,9 +32,21 @@ function add_my_query_args() {
 	$wp->add_query_var('evterm_pageid'); 
 }
 
+/* This makes post type 'page' public queryable
+ * This is because then we can use post_type=page in our search
+ * queries. Else 'page' will become 'any'
+ */
+function fix_page_query() {
+    if ( post_type_exists( 'page' ) ) {
+        global $wp_post_types;
+        $wp_post_types['page']->publicly_queryable = true;
+    }
+}
+
 add_action ('init', 'register_my_menus');
 add_action ('init', 'adjust_roles');
 add_action('init','add_my_query_args');
+add_action( 'init', 'fix_page_query');
 
 function hide_menu() {
     remove_submenu_page( 'themes.php', 'themes.php' ); // hide the theme selection submenu
@@ -418,7 +430,7 @@ function evtermine_ajax( ) {
     $event_add_query = $_POST['query'];
   }
   if (array_key_exists('filter', $_POST)) {
-    $event_show_filter = $_POST['filter'];
+    $event_show_filter = array('highlight' => $_POST['filter']);
   }
   require locate_template('event-box.php');
   $ev_output = ob_get_clean();
@@ -432,8 +444,9 @@ add_action( 'wp_ajax_nopriv_evtermine-ajax', 'evtermine_ajax' );
 add_action( 'wp_ajax_evtermine-ajax', 'evtermine_ajax' );
 
 function change_wp_search_size($query) {
-    if ( $query->is_search ) // Make sure it is a search page
-        $query->query_vars['posts_per_page'] = -1; // Change 10 to the number of posts you would like to show
+    if ( $query->is_search ) {
+        $query->query_vars['posts_per_page'] = 15;
+    }
 
     return $query; // Return our modified query variables
 }

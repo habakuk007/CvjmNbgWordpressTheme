@@ -6,7 +6,9 @@
        * $event_count: Number of events to display
        * $event_vid: Veranstalter-ID used at Evangelische Termine
        * $event_add_query: Additional query options
-	   * $event_show_filter: true show lamp, else show not
+	   * $event_show_filter: array with the following keys
+	       highlight: Show highlight lamp
+		   noheadline: do not show headline   
        **/
 ?>
 <div class="eventbox">
@@ -19,7 +21,7 @@
       $event_vid = 1498;
     }
     if (!isset($event_show_filter)) {
-      $event_show_filter = 'no';
+      $event_show_filter = array( 'highlight' => 'no', 'noheadline' => 'no' );
     }
 	
 	// Filter out not query options we will fill in later
@@ -41,7 +43,7 @@
 	  $isHighlight = false;
 	}
 		
-    if (strpos($event_show_filter, 'yes') !== false)
+    if (array_key_exists('highlight', $event_show_filter) && strcmp($event_show_filter['highlight'], 'yes') == 0)
 	{
       if ($isHighlight !== false)
       {
@@ -63,10 +65,16 @@
 	  echo '/images/' . $image . '" title="'. $alt_text . '" class="evterm_hilight_image" />' . "\n";
 	  echo '</a>' . "\n";
 	}
+	
+	if (array_key_exists('noheadline', $event_show_filter) && strcmp($event_show_filter['noheadline'], 'yes') == 0)
+	{
+	  echo '</div>' . "\n";
+	} else {
+	  echo '<h1 class="event_headline">N&auml;chste Termine</h1>' . "\n";
+	  echo '</div>' . "\n";
+	  echo '<div class="partseperator"></div>' . "\n";
+	}
   ?>
-  <h1 class="event_headline">N&auml;chste Termine</h1>
-  </div>
-  <div class="partseperator"></div>
   <div class="event_list">
     <?php
       $query_string = 'vid=' . $event_vid . '&itemsPerPage=' . $event_count;

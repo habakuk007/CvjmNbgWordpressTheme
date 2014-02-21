@@ -2,6 +2,26 @@
 
 .search_headline {
   font-size: medium;
+  font-weight: bold;
+  padding: 0.3em;
+  border: 1px solid #646464;
+  -moz-border-radius-topright: 9px;
+  -webkit-border-top-right-radius: 9px;
+  border-top-right-radius: 9px;
+  display: inline;
+}
+
+.search_headline_active {
+  background-color: #AAAAAA;
+}
+
+.search_headline  a {
+  text-decoration: none;
+  color: #d2232b;
+}
+
+.search_headline  a:hover {
+  text-decoration: underline;
   color: #d2232b;
 }
 
