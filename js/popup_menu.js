@@ -1,51 +1,16 @@
 /* JavaScript code to handle the popup menu */
 
 $(document).ready(function() {
-	$('#menu-hauptseite-menue-oben li').hover(
-	  function(e) {
-		if ($(this).hasClass('menu-item-has-children')) {
-		  //var x = $(document).width() - e.clientX - ($(this).find('ul').width() / 2);
-		  //x = $(document).width() - ($(this).offset().left + $(this).find('ul').width());
-		  var x = $(this).position().left;
-		  if (x < 0) {
-			x = 0;
-		  }
-		  $(this).find('ul').css('visibility', 'visible');
-		  $(this).find('ul').css('left', x);
-		}
-		$(this).css('background-color', '#CCCCCC');
-		$(this).children('a').css('color', '#C5121D');
-	  },
-	  function() {
-		if ($(this).hasClass('menu-item-has-children')) {
-		  $(this).find('ul').css('visibility', 'hidden');
-		  $(this).css('background-color', '#FFFFFF');
-		  $(this).children('a').css('color', '#000000');
-		} else if ($(this).hasClass('linelist')) {
-		  $(this).css('background-color', '#FFFFFF');
-		  $(this).children('a').css('color', '#000000');
-		} else {
-		  $(this).children('a').css('color', '#FFFFFF');
-		}
-	  }
-	);
-	$('#menu-hauptseite-menue-oben li ul li a').click(
-	  function() {
-		if ($(this).hasClass('menu-item-has-children')) {
-		  //var x = $(document).width() - e.clientX - ($(this).find('ul').width() / 2);
-		  //x = $(document).width() - ($(this).offset().left + $(this).find('ul').width());
-		  var x = $(this).position().left;
-		  if (x < 0) {
-			x = 0;
-		  }
-		  $(this).find('ul').css('visibility', 'visible');
-		  $(this).find('ul').css('left', x);
-		
-		  $(this).css('background-color', '#CCCCCC');
-		  $(this).css('color', '#C5121D');
-		}
-	  }
-	);
+  $('#menu-hauptseite-menue-oben li ul li a').click(
+    function() {
+      if ($(this).hasClass('menu-item-has-children')) {
+        $(this).find('ul').css('visibility', 'visible');
+
+        $(this).css('background-color', '#CCCCCC');
+        $(this).css('color', '#C5121D');
+     }
+    }
+  );
 
   // FlexMenu
   var navigation = responsiveNav(".nav-collapse", {

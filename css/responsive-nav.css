@@ -1,11 +1,62 @@
 /*! responsive-nav.js 1.0.25 by @viljamis */
 
-.nav-collapse ul {
-  list-style: none;
+.nav-collapse {
+  clear:right;
+  float:right;
 }
 
-.nav-collapse li {
-  width: 100%;
+.nav-collapse ul {
+  list-style: none outside none;
+}
+
+.nav-collapse ul li {
+  padding: 0 0.5em 0 0.5em;
+}
+
+.nav-collapse ul li a {
+  background-color: transparent;
+  color: #000;
+  transition: background-color 0.2s linear, color 0.2s linear;
+}
+
+.nav-collapse ul li ul li a {
+  transition: none;
+}
+
+.nav-collapse ul li:hover > a {
+  background-color: #CCCCCC;
+  color: #C5121D;
+}
+
+.nav-collapse ul li ul {
+  position: absolute;
+  visibility: hidden;
+  opacity:0;
+  width: auto;
+  margin: 0;
+  padding: 0.2em 0 0.2em 0;
+  background-color: #CCCCCC;
+  color: #FFFFFF;
+  text-align: left;
+  border-collapse:collapse;
+  -moz-box-shadow:    3px 3px 3px #ccc;
+  -webkit-box-shadow: 3px 3px 3px #ccc;
+  box-shadow:         3px 3px 3px #ccc;
+  transition: visibility 0s linear 0.2s, opacity 0.2s linear;
+}
+
+.nav-collapse ul li ul li{
+  display: block;
+}
+
+.nav-collapse ul li:hover > ul {
+  visibility: visible;
+  opacity:1;
+  transition: opacity 0.2s linear;
+}
+
+.nav-collapse ul li  ul li:hover > a{
+  color: #C5121D;
 }
 
 .js .nav-collapse {
@@ -38,6 +89,7 @@
   width: 50px;
   height: 40px;
   background: #555555 url("../images/hamburger.gif") no-repeat 50% 33%;
+  clear: right;
   float: right;
   text-indent: -9999px;
   overflow: hidden;
@@ -49,18 +101,37 @@
 @media only screen
 and (min-width : 320px)
 and (max-width : 480px) {
+
+  .nav-collapse ul {
+    text-align: left;
+  }
+
   .js .nav-collapse {
     border: 1px solid;
     width: 70%;
     background-color: #FFFFFF;
-    left: 30%;
+    left: 0;
     margin: 0;
     padding: 0;
+	display: block;
   }
 }
 
 @media only screen
 and (min-width : 481px) {
+  .nav-collapse {
+    display: table;
+  }
+  
+  .nav-collapse ul {
+    display: table-row;
+    width: 100%;
+  }
+  
+  .nav-collapse ul li {
+    display: table-cell;
+  }
+
   .js .nav-collapse {
     position: relative;
   }
