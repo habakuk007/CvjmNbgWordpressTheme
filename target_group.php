@@ -74,7 +74,10 @@ $news_id = get_field( 'categorie_news' )?>
 </div>
 
 <div class="right_sidebar_container">
-  <?php require(locate_template('sidebar_links.php')); ?>
+  <?php $pics = array( 'Bildergalerie_Logo.jpg', 'Videogalerie_Logo.jpg', 'Podcast_Logo.jpg');
+    $links = array( 'http://galerie.cvjm-nuernberg.de/', 'http://vimeo.com/cvjmnuernberg/videos',
+      'http://podcasts.cvjm-nuernberg.de/');
+  require(locate_template('sidebar_links.php')); ?>
 </div>
 
 <?php get_footer(); ?>

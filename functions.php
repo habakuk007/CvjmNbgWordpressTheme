@@ -278,7 +278,7 @@ class Walker_Header_Popup_Menu extends Walker_Nav_Menu {
     $item_output .= '</a>';
     if ($args->has_children && $depth==0)
     {
-      $item_output .= '<a href="#"><img src="' . get_bloginfo('template_directory') . '/images/arrow_down.png" class="header_menu_arrow" /></a>';
+      $item_output .= '<img src="' . get_bloginfo('template_directory') . '/images/arrow_down.png" class="header_menu_arrow" />';
     }
     $item_output .= $args->after;
 

@@ -15,7 +15,7 @@
   <div class="event_headline_container">
   <?php
     if (!isset($event_count)) {
-      $event_count = 5;
+      $event_count = 7;
     }
     if (!isset($event_vid)) {
       $event_vid = 1498;

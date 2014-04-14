@@ -10,7 +10,7 @@
 }
 
 .nav-collapse ul li {
-  padding: 0 0.5em 0 0.5em;
+  padding: 0 1em 0 0.5em;
 }
 
 .nav-collapse ul li a {
@@ -47,6 +47,7 @@
 
 .nav-collapse ul li ul li{
   display: block;
+  padding: 0.2em 2em;
 }
 
 .nav-collapse ul li:hover > ul {

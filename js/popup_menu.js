@@ -1,17 +1,6 @@
 /* JavaScript code to handle the popup menu */
 
 $(document).ready(function() {
-  $('#menu-hauptseite-menue-oben li ul li a').click(
-    function() {
-      if ($(this).hasClass('menu-item-has-children')) {
-        $(this).find('ul').css('visibility', 'visible');
-
-        $(this).css('background-color', '#CCCCCC');
-        $(this).css('color', '#C5121D');
-     }
-    }
-  );
-
   // FlexMenu
   var navigation = responsiveNav(".nav-collapse", {
     animate: true, // Boolean: Use CSS3 transitions, true or false

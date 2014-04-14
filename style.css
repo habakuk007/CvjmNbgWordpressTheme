@@ -55,6 +55,11 @@ p {
   padding: 0px 0px 0px 0px;
 }
 
+input,textarea {
+   font-family: inherit;
+   font-size: inherit;
+}
+
 .clearlink {
   text-decoration: none;
   color: #000;
@@ -78,6 +83,20 @@ p {
   background-repeat:no-repeat;
 }
 
+/* As all elements in the header div have float attribute
+   we need some content after it which clears the float, because
+   else the div box will have a height of 0 and we have no
+   background image
+*/
+.header:after {
+  clear: both;
+  content: " ";
+  display: block;
+  font-size: 0;
+  height: 0;
+  visibility: hidden;
+}
+
 .headerright {
   text-align: right;
 }
@@ -89,6 +108,7 @@ p {
 
 .languages {
    margin-top: 0.2em;
+   text-align: center;
 }
 
 .languages  ul{
@@ -113,9 +133,10 @@ p {
 }
 
 .search_go {
-  height: 1.1em;
+  height: 1.2em;
   margin-left: 0px;
   padding-left: 0px;
+  vertical-align: middle;
 }
 
 .mainmenu {
@@ -325,6 +346,7 @@ a.newstitle:hover {
   padding-top: 0px;
   padding-bottom: 0px;
   font-size: small;
+  overflow: hidden;
 }
 
 /* Event box */
@@ -506,8 +528,9 @@ and (min-width : 481px) {
 
 .header_top_menu {
   font-size: small;
-  padding: 0.5em 0 0.5em 0;
+  padding: 0.5em 0 0.2em 0;
   margin: 0 0 0 0;
+  text-align: center;
 }
 
 .header_top_menu  ul {

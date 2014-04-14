@@ -6,6 +6,7 @@ get_header();
 
 /* Save the values for our sub modules, because our page fields are gone
  * if the first sub module makes a new query */
+  $parent_id = get_the_ID();
   $circle_id = get_field( 'vh_category_circles' );
   $teaser_id = get_field( 'vh_category_teaser' );
   $event_vid = get_field( 'vh_ev_vid' );

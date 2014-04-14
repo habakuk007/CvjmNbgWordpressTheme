@@ -26,6 +26,10 @@ get_header(); ?>
   <?php $news_name = 'news'; require(locate_template('news-box.php')); ?>
 </div>
 
-<?php require(locate_template('sidebar.php')); ?>
+<?php 
+    $pics = array( 'Bildergalerie_Logo.jpg', 'Videogalerie_Logo.jpg', 'Podcast_Logo.jpg', 'Treppenhaus_Lounge_Logo.jpg');
+    $links = array( 'http://galerie.cvjm-nuernberg.de/', 'http://vimeo.com/cvjmnuernberg/videos',
+      'http://podcasts.cvjm-nuernberg.de/', 'http://www.treppenhaus-lounge.de');
+    require(locate_template('sidebar.php')); ?>
 
 <?php get_footer(); ?>
