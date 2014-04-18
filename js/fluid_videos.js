@@ -1,3 +1,4 @@
+(function($) {
 var $allVideos;
 var $fluidEl;
 
@@ -33,3 +34,4 @@ $(document).ready(function() {
 
   });
 });
+})(jQuery);

@@ -1,3 +1,4 @@
+(function($) {
 function event_ajax(ev) {
   overlay = '<div class="eventbox" style="width: ' + $('.eventbox').width() + 'px; line-height: ' + $('.eventbox').height() + 'px; text-align: center;">';
   overlay += '<img src="' + params.template_path + '/images/progress.gif" style="vertical-align: middle;">';
@@ -49,3 +50,4 @@ $(document).ready(function() {
   
   $('.callajax').click(event_ajax);
 });
+})(jQuery);

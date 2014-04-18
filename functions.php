@@ -448,21 +448,22 @@ function register_my_stylesheets() {
   wp_register_style('search', get_template_directory_uri() . '/css/search.css', array(), $version, 'all');
   wp_register_style('flexslider', get_template_directory_uri() . '/css/flexslider.css', array(), $version, 'all');
   wp_register_style('resp-nav', get_template_directory_uri() . '/css/responsive-nav.css', array(), $version, 'all');
+  wp_register_style('sidr-style', get_template_directory_uri() . '/css/jquery.sidr.light.css', array(), '1.2.1', 'all');
   wp_register_style('treeview', get_template_directory_uri() . '/css/treeview.css', array(), $version, 'all');
 }
 
 function register_my_js_files() {
   wp_register_script( 'jquery-tools', get_template_directory_uri() . '/js/jquery.tools.min.js', array(), '1.2.7', false );
   wp_register_script( 'flexslider', get_template_directory_uri() . '/js/jquery.flexslider-min.js', array(), '2.2.0', false );
-  wp_register_script( 'resp-nav', get_template_directory_uri() . '/js/responsive-nav.min.js', array(), '0.1', false );
-  wp_register_script( 'popup-menu', get_template_directory_uri() . '/js/popup_menu.js', array(), '0.1', false );
   wp_register_script( 'fluid-video', get_template_directory_uri() . '/js/fluid_videos.js', array(), '0.1', false );
   wp_register_script( 'fluid-imgmap', get_template_directory_uri() . '/js/fluid_imagemaps.js', array(), '0.1', false );
+  wp_register_script( 'sidr', get_template_directory_uri() . '/js/jquery.sidr.min.js', array(), '1.2.1', false );
   wp_register_script( 'event-callback', get_template_directory_uri() . '/js/event_callback.js', array(), '0.1', false );
 }
 
 function add_needed_stylesheets() {
   wp_enqueue_style( 'common-style');
+  wp_enqueue_style( 'sidr-style');
   /* index.php gets frontpage css */
   if ( is_home() )
   {
@@ -483,15 +484,15 @@ function add_needed_stylesheets() {
 }
 
 function add_needed_javascript() {
+  wp_enqueue_script( 'jquery' );
   wp_enqueue_script( 'jquery-tools' );
   wp_enqueue_script( 'flexslider' );
-  wp_enqueue_script( 'resp-nav' );
-  wp_enqueue_script( 'popup-menu' );
   wp_enqueue_script( 'fluid-video' );
   wp_enqueue_script( 'fluid-imgmap' );
   wp_enqueue_script( 'event-callback' );
   $params = array('template_path' => get_template_directory_uri(), 'admin_url' => admin_url( 'admin-ajax.php' ));
   wp_localize_script( 'event-callback', 'params', $params);
+  wp_enqueue_script( 'sidr' );
 }
 
 function safely_add_stylesheet() {

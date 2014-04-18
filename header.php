@@ -29,13 +29,22 @@ $parent_id = getTopmostParent();
 <?php wp_head(); ?>
 
 <script type="text/javascript" charset="utf-8">
+(function($) {
+    // Inside of this function, $() will work as an alias for jQuery()
+    // and other libraries also using $ will not be accessible under this shortcut
   $(window).load(function() {
     $('.flexslider').flexslider({ directionNav: false });
   });
   
   $(document).ready(function() {
+    $('#navtoggle').sidr({
+      name: 'sidr', /* ID des DIV's, der die Navigation beinhaltet */
+      side: 'left' /* Seite auf der Sidr geöffnet werden soll, mögliche Werte sind left oder right */
+    });
+
     $(window).resize();
   });
+})(jQuery);
 </script>
 
 </head>
@@ -77,4 +86,20 @@ $parent_id = getTopmostParent();
                             'container'       => 'nav',
                             'menu_class'      => 'header-menu-list',
                             'walker' => new Walker_Header_Popup_Menu() ) ); ?>
+                            
+  <a href="javascript:;" id="navtoggle">
+    <div id="menu-button">
+      <span style="float: right;">Menu</span>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </a>
+  
+  <?php wp_nav_menu( array( 'theme_location' => 'header-menu',
+                            'container' => 'nav',
+                            'container_class' => '',
+                            'container_id' => 'sidr',
+                            'menu_class'      => 'header_main_menu'));?>
 </div>
+

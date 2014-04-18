@@ -1,3 +1,4 @@
+(function($) {
 var $imgMaps;
 
 // When the window is resized we resize all image maps
@@ -59,3 +60,4 @@ $(document).ready(function() {
   // Responsive image map
   $imgMaps = $('img[usemap]');
 });
+})(jQuery);
