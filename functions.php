@@ -11,12 +11,10 @@ function register_my_menus() {
   register_nav_menu('languages-menu', __('Languages Menu'));
 
   // Association menus
-  register_nav_menu('eibach-menu', __( 'Eibach Menu' ));
   register_nav_menu('gostenhof-menu', __( 'Gostenhof Menu' ));
   register_nav_menu('grossgruendlach-menu', __( 'Großgründlach Menu' ));
   register_nav_menu('kornmarkt-menu', __( 'Kornmarkt Menu' ));
   register_nav_menu('lichtenhof-menu', __( 'Lichtenhof Menu' ));
-  register_nav_menu('schwaig-menu', __( 'Schwaig Menu' ));
 }
 
 function adjust_roles() {

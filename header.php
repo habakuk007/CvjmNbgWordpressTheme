@@ -95,11 +95,20 @@ $parent_id = getTopmostParent();
       <div></div>
     </div>
   </a>
-  
-  <?php wp_nav_menu( array( 'theme_location' => 'header-menu',
+
+  <?php 
+  if (get_field( 'vh_menu', $parent_id) ) {
+    wp_nav_menu( array( 'theme_location' => get_field( 'vh_menu', $parent_id ),
                             'container' => 'nav',
                             'container_class' => '',
                             'container_id' => 'sidr',
-                            'menu_class'      => 'header_main_menu'));?>
+                            'menu_class'      => 'header_main_menu'));
+  } else {
+    wp_nav_menu( array( 'theme_location' => 'header-menu',
+                            'container' => 'nav',
+                            'container_class' => '',
+                            'container_id' => 'sidr',
+                            'menu_class'      => 'header_main_menu'));
+  } ?>
 </div>
 
