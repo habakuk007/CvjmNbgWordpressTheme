@@ -8,6 +8,10 @@
  * @subpackage Twenty_Twelve
  * @since Twenty Twelve 1.0
  */
+
+/* We get all values for the standard things from the parent page, so we need the ID of it */
+$parent_id = getTopmostParent();
+
 ?><!DOCTYPE html>
 <!--[if IE 7]>
 <html class="ie ie7" <?php language_attributes(); ?>>
@@ -40,8 +44,8 @@
 
 <div class="header">
   <a href="<?php echo home_url();?>"><img src="<?php 
-    if (get_field('vh_logo')) {
-	  echo get_field('vh_logo');
+    if (get_field('vh_logo', $parent_id)) {
+	  echo get_field('vh_logo', $parent_id);
 	} else {
 	  echo bloginfo('template_directory');
       echo '/images/logo_main.png';

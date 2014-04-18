@@ -329,6 +329,114 @@ class Walker_Header_Popup_Menu extends Walker_Nav_Menu {
 }
 
 /**********************
+ * Walker function for association tree view menus
+ **********************/
+class Walker_Treeview_Menu extends Walker_Nav_Menu {
+  /**
+   * @see Walker::start_lvl()
+   * @since 3.0.0
+   *
+   * @param string $output Passed by reference. Used to append additional content.
+   * @param int $depth Depth of page. Used for padding.
+   */
+  function start_lvl( &$output, $depth = 0, $args = array() ) {
+    $indent = str_repeat("\t", $depth);
+    $output .= "\n$indent<ul>\n";
+  }
+
+  /**
+   * @see Walker::start_el()
+   * @since 3.0.0
+   *
+   * @param string $output Passed by reference. Used to append additional content.
+   * @param object $item Menu item data object.
+   * @param int $depth Depth of menu item. Used for padding.
+   * @param int $current_page Menu item ID.
+   * @param object $args
+   */
+  function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
+    $indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
+
+    $id = apply_filters( 'nav_menu_item_id', 'menu-item-'. $item->ID, $item, $args );
+    $id = $id ? esc_attr( $id ) : '';
+
+    $output .= $indent;
+    if ($args->has_children)
+    {
+      $output .= $indent . '<li><input type="checkbox" id="' . $id . '">';
+    } else {
+      $output .= $indent . '<li id="' . $id . '" class="treeview_nocolapse">';
+    }
+
+    $attributes  = ! empty( $item->attr_title ) ? ' title="'  . esc_attr( $item->attr_title ) .'"' : '';
+    $attributes .= ! empty( $item->target )     ? ' target="' . esc_attr( $item->target     ) .'"' : '';
+    $attributes .= ! empty( $item->xfn )        ? ' rel="'    . esc_attr( $item->xfn        ) .'"' : '';
+    $attributes .= ! empty( $item->url )        ? ' href="'   . esc_attr( $item->url        ) .'"' : '';
+    $attributes .= ' class="clearlink"';
+    
+    if ($args->has_children)
+    {
+      $output .= '<label for="' . $id . '">';
+    }
+
+    $item_output = $args->before;
+    $item_output .= '<a'. $attributes .'>';
+    $item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
+    $item_output .= '</a>';
+    $item_output .= $args->after;
+    
+    if ($args->has_children)
+    {
+      $output .= '</label>';
+    }
+
+    $output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
+  }
+
+  /**
+   * Traverse elements to create list from elements.
+   *
+   * Display one element if the element doesn't have any children otherwise,
+   * display the element and its children. Will only traverse up to the max
+   * depth and no ignore elements under that depth. It is possible to set the
+   * max depth to include all depths, see walk() method.
+   *
+   * This method shouldn't be called directly, use the walk() method instead.
+   *
+   * @since 2.5.0
+   *
+   * @param object $element Data object
+   * @param array $children_elements List of elements to continue traversing.
+   * @param int $max_depth Max depth to traverse.
+   * @param int $depth Depth of current element.
+   * @param array $args
+   * @param string $output Passed by reference. Used to append additional content.
+   * @return null Null on failure with no changes to parameters.
+   */
+  function display_element( $element, &$children_elements, $max_depth, $depth=0, $args, &$output ) {
+    $id_field = $this->db_fields['id'];
+    // Check if the element has subitems and remember this in our arg array
+    // as 'has_children' element.
+    if ( is_object( $args[0] ) ) {
+      $args[0]->has_children = ! empty( $children_elements[$element->$id_field] );
+    }
+    return parent::display_element( $element, $children_elements, $max_depth, $depth, $args, $output );
+  }
+
+  /**
+   * @see Walker::end_el()
+   * @since 3.0.0
+   *
+   * @param string $output Passed by reference. Used to append additional content.
+   * @param object $item Page data object. Not used.
+   * @param int $depth Depth of page. Not Used.
+   */
+  function end_el( &$output, $item, $depth = 0, $args = array() ) {
+    $output .= "</li>\n";
+  }
+}
+
+/**********************
  * Stylesheet stuff
  **********************/
 function register_my_stylesheets() {
@@ -340,6 +448,7 @@ function register_my_stylesheets() {
   wp_register_style('search', get_template_directory_uri() . '/css/search.css', array(), $version, 'all');
   wp_register_style('flexslider', get_template_directory_uri() . '/css/flexslider.css', array(), $version, 'all');
   wp_register_style('resp-nav', get_template_directory_uri() . '/css/responsive-nav.css', array(), $version, 'all');
+  wp_register_style('treeview', get_template_directory_uri() . '/css/treeview.css', array(), $version, 'all');
 }
 
 function register_my_js_files() {
@@ -364,6 +473,7 @@ function add_needed_stylesheets() {
   }
   if ( is_page_template( 'association.php' ) || is_page_template( 'association_freepage.php' ) ) {
     wp_enqueue_style( 'association');
+    wp_enqueue_style( 'treeview');
   }
   if ( is_search() ) {
     wp_enqueue_style( 'search');
@@ -430,7 +540,7 @@ function evtermine_ajax( ) {
     $event_add_query = $_POST['query'];
   }
   if (array_key_exists('filter', $_POST)) {
-    $event_show_filter = array('highlight' => $_POST['filter']);
+    $event_show_filter = unserialize(stripslashes($_POST['filter']));
   }
   require locate_template('event-box.php');
   $ev_output = ob_get_clean();
@@ -451,3 +561,21 @@ function change_wp_search_size($query) {
     return $query; // Return our modified query variables
 }
 add_filter('pre_get_posts', 'change_wp_search_size'); // Hook our custom function onto the request filter
+
+function getTopmostParent()
+{
+  global $post;
+  
+  $parent_id = $post->ID;
+  if ($post->post_parent != 0)
+  {
+    $parent_id = $post->ID;
+    $next_id = get_post($parent_id)->post_parent;
+    while ($next_id != 0) {
+      $parent_id = $next_id;
+      $next_id = get_post($parent_id)->post_parent;
+    }
+  }
+ 
+  return $parent_id;
+}

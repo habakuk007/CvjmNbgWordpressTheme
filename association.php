@@ -32,7 +32,9 @@ get_header();
     <p class="association_menu_headline"><?php echo $association_name ?></p>
     <p class="association_menu_url"><?php echo $association_url ?></p>
     <?php wp_nav_menu( array( 'theme_location' => $menu_name,
-                            'container' => false) ); ?>
+                            'container' => 'div',
+                            'container_class' => 'css-treeview',
+                            'walker' => new Walker_Treeview_Menu() ) ); ?>
   </div>
   <?php require(locate_template('sidebar_links.php')); ?>
 </div>

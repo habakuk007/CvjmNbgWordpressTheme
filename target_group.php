@@ -4,7 +4,32 @@ Template Name: Zielgruppe
 */
 get_header();
 wp_reset_query();
-$news_id = get_field( 'categorie_news' )?>
+$news_id = get_field( 'categorie_news' );
+$target_ids = '';
+$groups = get_field('zielgruppe');
+if ($groups) {
+  $target_ids = '&people=';
+  $first = true;
+  foreach ($groups as $id) {
+    if ($first == false) {
+      $target_ids .= ',';
+    }
+    $target_ids .= $id;
+    $first = false;
+  }
+}
+$cvjms = get_field('veranstalter');
+if ($cvjms) {
+  $event_vid = ''
+  $first = true;
+  foreach ($cvjms as $id) {
+    if ($first == false) {
+      $event_vid .= ',';
+    }
+    $event_vid .= $id;
+    $first = false;
+  }
+}?>
 
 <div class="target_group_headline_container">
   <span class="target_group_headline"><?php the_title()?></span>
@@ -71,6 +96,10 @@ $news_id = get_field( 'categorie_news' )?>
 
 <div class="main_container">
   <?php require(locate_template('news-box.php')); ?>
+  
+  <?php $event_count = 100000; $event_add_query = 'eventtype=2' . $target_ids; $event_headline = 'Gruppen'; $event_list_mode = true; require(locate_template('event-box.php')); ?>
+  <?php $event_count = 100000; $event_add_query = 'eventtype=5' . $target_ids; $event_headline = 'Freizeiten'; $event_list_mode = true; require(locate_template('event-box.php')); ?>
+  <?php $event_count = 100000; $event_add_query = 'eventtype=7' . $target_ids; $event_headline = 'Specials'; $event_list_mode = true; require(locate_template('event-box.php')); ?>
 </div>
 
 <div class="right_sidebar_container">

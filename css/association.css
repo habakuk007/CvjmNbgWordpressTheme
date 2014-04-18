@@ -11,24 +11,11 @@
   color: #FFF;
 }
 
-.association_menu ul {
-  list-style-type:none;
-  list-style-image:none;
-  padding-left: 0;
-}
-
-.association_menu li {
-  padding-top: 1.2em;
-}
-
-.association_menu li a {
-  text-decoration: none;
-  color: #FFF;
-}
-
 .association_menu_headline {
+  font-weight: bold;
 }
 
 .association_menu_url {
+  font-weight: bold;
 }
 
