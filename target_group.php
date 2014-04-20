@@ -20,7 +20,7 @@ if ($groups) {
 }
 $cvjms = get_field('veranstalter');
 if ($cvjms) {
-  $event_vid = ''
+  $event_vid = '';
   $first = true;
   foreach ($cvjms as $id) {
     if ($first == false) {
