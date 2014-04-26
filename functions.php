@@ -505,15 +505,33 @@ add_action( 'wp_enqueue_scripts', 'safely_add_stylesheet' );
 // Additional shortcuts for content editing
 // [evtermine] Shortcut
 function evtermine_func( $atts ) {
-  extract( shortcode_atts( array(
-    'count' => null,
-    'vid' => null,
-    'query' => null
-  ), $atts ) );
+  $filter = array('noheadline', 'highlight', 'event', 'urlaub', 'sport', 'gruppe'. 'glaube', 'kultur');
+  $pair_names = array_merge(array('count', 'vid', 'query', 'listmode', 'headline'), $filter);
+  $pairs = array();
+  foreach ($pair_names as $name) {
+    $pairs[$name] = null;
+  }
+  extract( shortcode_atts( $pairs, $atts ) );
   ob_start();
   $event_count = $count;
   $event_vid = $vid;
   $event_add_query = $query;
+  $event_headline = $headline;
+  if (strcmp($listmode, 'yes') == 0) {
+    $event_list_mode = true;
+  }
+  $event_show_filter = array();
+  foreach ($filter as $entry) {
+    if (${$entry} != null)
+    {
+      $event_show_filter[$entry] = 'yes';
+    }
+  }
+  if (count($event_show_filter) == 0)
+  {
+    $event_show_filter = null;
+  }
+
   require locate_template('event-box.php');
   $ev_output = ob_get_clean();
 
@@ -541,6 +559,10 @@ function evtermine_ajax( ) {
   if (array_key_exists('filter', $_POST)) {
     $event_show_filter = unserialize(stripslashes($_POST['filter']));
   }
+  if (array_key_exists('headline', $_POST)) {
+    $event_headline = $_POST['headline'];
+  }
+
   require locate_template('event-box.php');
   $ev_output = ob_get_clean();
 

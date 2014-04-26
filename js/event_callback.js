@@ -17,7 +17,8 @@ function event_ajax(ev) {
 	  count : $(this).data('count'),
 	  vid : $(this).data('vid'),
 	  query : $(this).data('query'),
-	  filter : $(this).data('filter')
+	  filter : $(this).data('filter'),
+    headline: $(this).data('headline')
 	},
 	// We return just text
 	"text"

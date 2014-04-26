@@ -29,21 +29,15 @@
     if (!isset($event_headline)) {
       $event_headline = 'N&auml;chste Termine';
     }
-	
-	if (!array_key_exists('noheadline', $event_show_filter) || strcmp($event_show_filter['noheadline'], 'yes') != 0) {
-    echo '<div class="event_headline_container">' . "\n";
-	  echo '<h1 class="event_headline">' . $event_headline . '</h1>' . "\n";
-	  echo '</div>' . "\n";
-	  echo '<div class="partseperator"></div>' . "\n";
-	}
+    
+    $query_string = 'vid=' . $event_vid . '&itemsPerPage=' . $event_count;
+    if (isset($event_add_query) && strlen($event_add_query) > 0) {
+      $query_string .= '&' . $event_add_query;
+    }
+    the_widget('EvTermine_Widget', 
+      array('reqstr' => $query_string,
+        'filter' => $event_show_filter,
+        'event_list_mode' => $event_list_mode,
+        'headline' => $event_headline));
   ?>
-  <div class="event_list">
-    <?php
-      $query_string = 'vid=' . $event_vid . '&itemsPerPage=' . $event_count;
-      if (isset($event_add_query) && strlen($event_add_query) > 0) {
-        $query_string .= '&' . $event_add_query;
-      }
-      the_widget('EvTermine_Widget', array('reqstr' => $query_string, 'filter' => $event_show_filter, 'event_list_mode' => $event_list_mode));
-    ?>
-  </div>
 </div>
