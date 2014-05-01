@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /* Place all needed callback functions here
  */
 
@@ -587,16 +587,29 @@ function getTopmostParent()
 {
   global $post;
   
-  $parent_id = $post->ID;
-  if ($post->post_parent != 0)
-  {
+  if ($post && is_object($post)) {
     $parent_id = $post->ID;
-    $next_id = get_post($parent_id)->post_parent;
-    while ($next_id != 0) {
-      $parent_id = $next_id;
+    if ($post->post_parent != 0)
+    {
+      $parent_id = $post->ID;
       $next_id = get_post($parent_id)->post_parent;
+      while ($next_id != 0) {
+        $parent_id = $next_id;
+        $next_id = get_post($parent_id)->post_parent;
+      }
     }
   }
  
   return $parent_id;
+}
+
+add_filter( 'wpthumb_image_post', 'pdw_bij_add_greyscale_filter', 10, 2 );
+
+function pdw_bij_add_greyscale_filter( WP_Image_Editor $editor, $args ) {
+    if ( ! is_a( $editor, 'WP_Image_Editor_GD' ) || empty( $args['greyscale'] ) )
+        return $editor;
+
+    imagefilter( $editor->get_image(), IMG_FILTER_GRAYSCALE );
+
+    return $editor;
 }

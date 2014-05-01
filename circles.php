@@ -47,7 +47,9 @@
 
       echo '<span class="circle_span">';
       echo '<a href="' . get_field('page_link', $post->ID) . '">' . "\n";
-      echo '<img src=" ' . get_field($picture_name, $post->ID) . '" class="circle_image" /></a>';
+      echo '<img src="' . wpthumb( get_field($picture_name, $post->ID), 'greyscale=1') .'" class="circle_image" onmouseover="this.src=\'' . get_field($picture_name, $post->ID) . '\'" onmouseout="this.src=\'' . wpthumb( get_field($picture_name, $post->ID), 'greyscale=1') . '\'" />';
+      //echo '<img src="' . get_field($picture_name, $post->ID) . '" class="circle_image" />';
+      echo '</a>';
       //echo '<br>' . get_the_title() . '</span>';
       /* One Unterschrift */
       echo '</span>';
