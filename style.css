@@ -122,18 +122,17 @@ input,textarea {
 }
 
 .search_field {
+  width: 15em;
+  font-size: x-small;
   padding-top: 0;
   margin-top: 0;
   margin-right: 0px;
   padding-right: 0px;
-  -webkit-border-radius: 5px; 
-  -moz-border-radius: 5px; 
-  border-radius: 5px; 
   border: 1px solid #848484;
 }
 
 .search_go {
-  height: 1.2em;
+  height: 1em;
   margin-left: 0px;
   padding-left: 0px;
   vertical-align: middle;
@@ -364,8 +363,9 @@ a.newstitle:hover {
 }
 
 .evtermine_container {
-  margin-top: 3px;
-  margin-bottom: 3px;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  line-height: 1.1em;
 }
 
 .evtermine_date {
@@ -403,13 +403,7 @@ a.evtermine_title:hover {
 
     /* Transparency */
     /* Fallback for web browsers that doesn't support RGBa */
-    background: rgb(128, 128, 128) transparent;
-    /* RGBa with 0.6 opacity */
-    background: rgba(128, 128, 128, 0.9);
-    /* For IE 5.5 - 7 first to digits is the alpha value 0.6 means 0.6 * 255 the rest is RGB*/
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#E5808080, endColorstr=#E5808080);
-    /* For IE 8*/
-    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#E5808080, endColorstr=#E5808080)";
+    background-color: #CCCCCC;
 
     /* styling */
     min-height:200px;

@@ -66,7 +66,7 @@ $parent_id = getTopmostParent();
                             'walker' => new Top_Menu_Walker() ));?>
     <div class="headerright searchform">
       <form role="search" method="get" id="searchform" action="/">
-      <input type="text" placeholder="Suchbegriff eingeben" size="30" name="s" id="s" class="search_field"<?php 
+      <input type="text" placeholder="Suchen..." name="s" id="s" class="search_field"<?php 
 	    if (array_key_exists('s', $_GET)) {
           echo 'value="' . $_GET["s"] . '"';
         }
