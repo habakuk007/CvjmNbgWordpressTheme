@@ -95,11 +95,11 @@ if ($cvjms) {
 </div>
 
 <div class="main_container">
-  <?php require(locate_template('news-box.php')); ?>
-  
-  <?php $event_count = 100000; $event_add_query = 'eventtype=2' . $target_ids; $event_headline = 'Gruppen'; $event_list_mode = true; require(locate_template('event-box.php')); ?>
-  <?php $event_count = 100000; $event_add_query = 'eventtype=5' . $target_ids; $event_headline = 'Freizeiten'; $event_list_mode = true; require(locate_template('event-box.php')); ?>
   <?php $event_count = 100000; $event_add_query = 'eventtype=7' . $target_ids; $event_headline = 'Specials'; $event_list_mode = true; require(locate_template('event-box.php')); ?>
+  <?php $event_count = 100000; $event_add_query = 'eventtype=5' . $target_ids; $event_headline = 'Freizeiten'; $event_list_mode = true; require(locate_template('event-box.php')); ?>
+  <?php $event_count = 100000; $event_add_query = 'eventtype=2' . $target_ids; $event_headline = 'Gruppen'; $event_list_mode = true; require(locate_template('event-box.php')); ?>
+  
+  <?php require(locate_template('news-box.php')); ?>
 </div>
 
 <div class="right_sidebar_container">
