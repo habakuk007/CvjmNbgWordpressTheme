@@ -55,7 +55,7 @@ p {
   padding: 0px 0px 0px 0px;
 }
 
-input,textarea {
+input,textarea,select {
    font-family: inherit;
    font-size: inherit;
 }
@@ -256,6 +256,7 @@ hr.veryheight {
 
 .first_contact_text_input {
   width: 100%;
+  font-size: small;
 }
 
 .first_contact_submit {
@@ -263,6 +264,7 @@ hr.veryheight {
   background-color: #d2232b;
   color: #ffffff;
   border: none;
+  font-size: small;
 }
 
 /* City map */
@@ -360,6 +362,61 @@ a.newstitle:hover {
 .event_headline {
   font-size: medium;
   color: #d2232b;
+  display: inline-block;
+}
+
+.event_select_arrow {
+  height: 0.5em;
+  vertical-align: middle;
+  display: inline-block;
+  padding-left: 0.2em;
+}
+
+.event_filter_text {
+  display: inline-block;
+}
+
+.event_filter_text:hover > a {
+  background-color: #CCCCCC;
+  color: #C5121D;
+}
+
+.event_filter_text:hover > ul {
+  visibility: visible;
+  opacity:1;
+  transition: opacity 0.2s linear;
+}
+
+.event_category_select {
+  position: absolute;
+  visibility: hidden;
+  overflow: visible;
+  opacity:0;
+  width: auto;
+  margin: 0;
+  padding: 0.2em 0 0.2em 0;
+  background-color: #CCCCCC;
+  color: #FFFFFF;
+  text-align: left;
+  border-collapse:collapse;
+  -moz-box-shadow:    3px 3px 3px #ccc;
+  -webkit-box-shadow: 3px 3px 3px #ccc;
+  box-shadow:         3px 3px 3px #ccc;
+  transition: visibility 0s linear 0.2s, opacity 0.2s linear;
+}
+
+.event_category_select li {
+  padding: 0.2em 2em;
+}
+
+.event_category_select a {
+  text-decoration: none;
+  color: #000;
+  font-weight: normal;
+}
+
+.event_category_select a:hover {
+  color: #C5121D;
 }
 
 .evtermine_container {
@@ -535,6 +592,7 @@ and (min-width : 481px) {
 
 .languages {
   font-size: small;
+  padding: 0.2em 0 0.5em 0;
 }
 
 .main_container {
