@@ -39,15 +39,18 @@ if ($cvjms) {
 <div class="target_group_desc_container">
   <div class="target_group_desc_col target_group_desc_col_left">
     <h1 class="target_group_desc_headline"><?php the_field( 'title_first_col' ) ?></h1>
-    <p class="target_group_desc_body"><?php the_field( 'content_first_col' ) ?></p>
+    <p class="target_group_desc_body"><?php the_field( 'content_first_col' ) ?><br>
+    <a href="#Specials">Alle Specials</a></p>
   </div>
   <div class="target_group_desc_col target_group_desc_col_middle">
     <h1 class="target_group_desc_headline"><?php the_field( 'title_second_col' ) ?></h1>
-    <p class="target_group_desc_body"><?php the_field( 'content_second_col' ) ?></p>
+    <p class="target_group_desc_body"><?php the_field( 'content_second_col' ) ?><br>
+    <a href="#Holidays">Alle Freizeiten</a></p>
   </div>
   <div class="target_group_desc_col target_group_desc_col_right">
     <h1 class="target_group_desc_headline"><?php the_field( 'title_third_col' ) ?></h1>
-    <p class="target_group_desc_body"><?php the_field( 'content_third_col' ) ?></p>
+    <p class="target_group_desc_body"><?php the_field( 'content_third_col' ) ?><br>
+    <a href="#Groups">Alle Gruppen</a></p>
   </div>
 </div>
 
@@ -77,15 +80,16 @@ if ($cvjms) {
     $contact_query->the_post();
     echo '<div class="target_group_contact_entry">' . "\n";
     echo '<img src="';
-    echo the_field( 'responsible_image' );
+    echo the_field( 'bild' );
     echo '" class="target_group_contact_image" />' . "\n";
     echo '<span>';
     echo the_field( 'responsible_association' );
-    echo '<br>' . "\n";
+    echo '<br><span style="font-weight: bold;">' . "\n";
     echo the_field( 'responsible_name' );
+    echo '</span><br>' . "\n";
+    echo '<a href="mailto:' . get_field( 'responsible_address' ) . '">' . get_field( 'responsible_address' ) . '</a>' . "\n";
     echo '<br>' . "\n";
-    echo the_field( 'responsible_address' );
-    echo '<br>' . "\n";
+    echo 'Tel: ' . get_field( 'telefon' );
     echo '</span>' . "\n";
     echo '</div>' . "\n";
     $count++;
@@ -95,8 +99,11 @@ if ($cvjms) {
 </div>
 
 <div class="main_container">
+  <a name="Specials"></a>
   <?php $event_count = 100000; $event_add_query = 'eventtype=7' . $target_ids; $event_headline = 'Specials'; $event_list_mode = true; require(locate_template('event-box.php')); ?>
+  <a name="Holidays"></a>
   <?php $event_count = 100000; $event_add_query = 'eventtype=5' . $target_ids; $event_headline = 'Freizeiten'; $event_list_mode = true; require(locate_template('event-box.php')); ?>
+  <a name="Groups"></a>
   <?php $event_count = 100000; $event_add_query = 'eventtype=2' . $target_ids; $event_headline = 'Gruppen'; $event_list_mode = true; require(locate_template('event-box.php')); ?>
   
   <?php require(locate_template('news-box.php')); ?>

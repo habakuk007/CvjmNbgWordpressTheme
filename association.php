@@ -30,7 +30,7 @@ get_header();
 <div class="right_sidebar_container">
   <div class="association_menu" style="background-color: <?php echo $color ?>;">
     <p class="association_menu_headline"><?php echo $association_name ?></p>
-    <p class="association_menu_url"><?php echo $association_url ?></p>
+    <p class="association_menu_url"><a href="http://<?php echo $association_url ?>" class="whitelink"><?php echo $association_url ?></a></p>
     <?php wp_nav_menu( array( 'theme_location' => $menu_name,
                             'container' => 'div',
                             'container_class' => 'css-treeview',

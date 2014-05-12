@@ -586,6 +586,7 @@ add_filter('pre_get_posts', 'change_wp_search_size'); // Hook our custom functio
 function getTopmostParent()
 {
   global $post;
+  $parent_id = 0;
   
   if ($post && is_object($post)) {
     $parent_id = $post->ID;

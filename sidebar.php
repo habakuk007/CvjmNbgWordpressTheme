@@ -12,10 +12,10 @@
   <div class="map_container">
     <img src="<?php bloginfo('template_directory'); ?>/images/CVJM_Vereine_Nuernberg_Karte.jpg" width="600" height="450" class="map_image" usemap="#citymap" />
 	<map name="citymap" id="citymap">
-	  <area shape="rect" title="Gro&szlig;gr&uuml;ndlach" coords="182,56,234,103" href="<?php echo home_url(); ?>"  />
-      <area shape="rect" title="Kornmarkt" coords="270,178,326,229" href="<?php echo home_url(); ?>" />
-      <area shape="rect" title="Gostenhof" coords="242,238,294,285" href="<?php echo home_url(); ?>" />
-      <area shape="rect" title="Lichtenhof" coords="300,249,352,296" href="<?php echo home_url(); ?>" />
+	  <area shape="rect" title="Gro&szlig;gr&uuml;ndlach" coords="182,56,234,103" href="<?php echo esc_url( get_permalink( get_page_by_title( 'CVJM Großgründlach' ) ) ); ?>"  />
+      <area shape="rect" title="Kornmarkt" coords="270,178,326,229" href="<?php echo esc_url( get_permalink( get_page_by_title( 'CVJM Kornmarkt' ) ) ); ?>" />
+      <area shape="rect" title="Gostenhof" coords="242,238,294,285" href="<?php echo esc_url( get_permalink( get_page_by_title( 'CVJM Gostenhof' ) ) ); ?>" />
+      <area shape="rect" title="Lichtenhof" coords="300,249,352,296" href="<?php echo esc_url( get_permalink( get_page_by_title( 'CVJM Lichtenhof' ) ) ); ?>" />
     </map>
     <!--<iframe width="100%" height="260" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.de/maps/ms?msa=0&amp;msid=202299304858622703127.0004eca77fc359d632122&amp;ie=UTF8&amp;t=m&amp;ll=49.430626,11.074905&amp;spn=0.116109,0.179214&amp;z=11&amp;output=embed"></iframe>-->
   </div>

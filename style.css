@@ -124,6 +124,7 @@ input,textarea,select {
 .search_field {
   width: 15em;
   font-size: x-small;
+  height: 1.4em;
   padding-top: 0;
   margin-top: 0;
   margin-right: 0px;
@@ -483,6 +484,14 @@ a.evtermine_title:hover {
     cursor:pointer;
     height:35px;
     width:35px;
+}
+
+.event_overlay_kontakt {
+  padding-top: 0.7em;
+}
+
+.event_overlay_address {
+  padding-top: 0.7em;
 }
 
 /* Container with circles */

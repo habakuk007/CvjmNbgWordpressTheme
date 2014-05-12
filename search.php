@@ -52,7 +52,7 @@ get_header(); ?>
 	
     if ($is_evtermine === false) {
 	  if (have_posts()) {
-        while (have_posts()) {
+      while (have_posts()) {
 	      the_post();
 	      echo '<p class="search_result">';
 	      echo '<a href="';
@@ -63,10 +63,15 @@ get_header(); ?>
 	      echo the_excerpt();
 	      echo '</p>' . "\n";
 	    }
-        echo '<p align="right">';
-	    echo previous_posts_link('&laquo; Vorherige Treffer;ge ');
-	    echo ' | ';
-	    echo next_posts_link(' Weitere Treffer &raquo;');
+      echo '<p align="right">';
+      $prev = get_previous_posts_link('&laquo; Vorherige Treffer ');
+      $next = get_next_posts_link(' Weitere Treffer &raquo;');
+	    echo $prev;
+      if (strlen($prev) > 0 && 
+        strlen($next) > 0) {
+	      echo ' | ';
+      }
+	    echo $next;
 	    echo '</p>' . "\n";
       } else {
         echo '<p class="search_result">Keine Treffer</p>';
