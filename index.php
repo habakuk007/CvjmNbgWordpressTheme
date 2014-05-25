@@ -32,6 +32,7 @@ get_header(); ?>
     require(locate_template('event-box.php')); ?>
 
   <?php $news_name = 'news'; require(locate_template('news-box.php')); ?>
+
 </div>
 
 <?php 

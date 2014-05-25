@@ -9,6 +9,9 @@
        **/
 ?>
 
+<?php
+if (!((isset($circle_name) && strlen($circle_name) == 0) || (isset($circle_id) && strlen($circle_id) == 0))) :
+?>
 <div id="circles" class="circles_container">
   <?php
     $circles_args = array(
@@ -56,3 +59,4 @@
     }
   ?>
 </div>
+<?php endif ?>
