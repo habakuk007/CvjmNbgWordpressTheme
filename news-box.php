@@ -76,10 +76,14 @@
      <ul class="media-list">
  <?php foreach ($postslist as $post) : setup_postdata($post); ?>
 	    <li class="media">
-            <a class="pull-left" href="<?php the_permalink(); ?>">
-                <img class="media-object size-64x64" width="64" height="64" 
+            <a class="pull-left" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
+                <?php if (has_post_thumbnail()) : ?>
+                   <?php the_post_thumbnail('preview64x64'); ?>
+                 <?php else : ?>
+                 <img class="media-object size-64x64" width="64" height="64" 
                     src="<?php echo getImageUrl($post); ?>" 
                     alt="<?php the_title(); ?>" style="background-color:#808080">
+                 <?php endif; ?>
              </a>
             <div class="media-body">
 				<h4 class="media-heading">
@@ -87,7 +91,7 @@
                        title="<?php the_title(); ?>"><?php the_title(); ?></a> 
                     <small>vom <?php the_date(); ?></small></h4>
 				<div class="news-content">
-                    <p><?php the_excerpt();?></p>
+                    <?php the_excerpt();?>
 					<p><small>Von <?php the_author(); ?>  in <?php the_category(' &gt; '); ?></small> <br />
                         <a class="btn btn-small" 
 							href="<?php the_permalink(); ?>" 
