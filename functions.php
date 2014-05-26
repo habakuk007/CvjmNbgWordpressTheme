@@ -15,6 +15,7 @@ function register_my_menus() {
   register_nav_menu('grossgruendlach-menu', __( 'Großgründlach Menu' ));
   register_nav_menu('kornmarkt-menu', __( 'Kornmarkt Menu' ));
   register_nav_menu('lichtenhof-menu', __( 'Lichtenhof Menu' ));
+  register_nav_menu('treppenhaus-lounge-menu', __( 'Treppenhaus Lounge Menu' ));
 }
 
 function adjust_roles() {
@@ -22,12 +23,6 @@ function adjust_roles() {
   if (!$roleObject->has_cap( 'edit_theme_options' ) ) {
       $roleObject->add_cap( 'edit_theme_options' );
   }
-}
-
-function add_my_query_args() { 
-    global $wp; 
-    $wp->add_query_var('evterm_hilight'); 
-	$wp->add_query_var('evterm_pageid'); 
 }
 
 /* This makes post type 'page' public queryable
@@ -43,7 +38,6 @@ function fix_page_query() {
 
 add_action ('init', 'register_my_menus');
 add_action ('init', 'adjust_roles');
-add_action('init','add_my_query_args');
 add_action( 'init', 'fix_page_query');
 
 function hide_menu() {
@@ -470,7 +464,8 @@ function add_needed_stylesheets() {
   if ( is_page_template( 'target_group.php') ) {
     wp_enqueue_style( 'target-group-style');
   }
-  if ( is_page_template( 'association.php' ) || is_page_template( 'association_freepage.php' ) ) {
+  if ( is_page_template( 'association.php' ) || is_page_template( 'association_freepage.php' ) ||
+    is_page('Landheim-Belegung') || is_page('Landheim-Admin')) {
     wp_enqueue_style( 'association');
     wp_enqueue_style( 'treeview');
   }
@@ -614,3 +609,19 @@ function pdw_bij_add_greyscale_filter( WP_Image_Editor $editor, $args ) {
 
     return $editor;
 }
+
+function add_query_vars_filter( $vars )
+{
+  //if (is_page('Landheim-Belegung')) {
+    $vars[] = "comeday";
+    $vars[] = "comemonth";
+    $vars[] = "comeyear";
+    $vars[] = "belmonth";
+    $vars[] = "belyear";
+    $vars[] = "belaction";
+    $vars[] = "belentry";
+  //}
+  return $vars;
+}
+add_filter( 'query_vars', 'add_query_vars_filter' );
+

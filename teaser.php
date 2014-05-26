@@ -28,7 +28,7 @@
     $teaser_query = new WP_Query( $teaser_args );
 
     $imgAvail = false;
-	$first_img = false;
+    $first_img = false;
     while( $teaser_query->have_posts() ) {
       $teaser_query->the_post();
       $startDate = DateTime::createFromFormat('Ymd', get_field( 'show_start' ));
@@ -38,27 +38,36 @@
       {
         if ($imgAvail == false)
         {
-          echo '<div class="flexslider">';
-          echo '<ul class="slides">';
+          echo '<div class="flexslider">' . "\n";
+          echo '<ul class="slides"> . "\n"';
           $imgAvail = true;
-		  $first_img = get_field( 'show_image' );
+          $first_img = get_field( 'show_image' );
         }
-        echo '<li>';
+        echo '<li>' . "\n";
+        if (strlen(get_field('externer_link')) > 0) {
+          echo '<a href="' . get_field('externer_link') . '">' . "\n";
+        } else if (!is_null(get_field('link')) && strlen(get_field('link')) > 0) {
+          echo '<a href="' . get_field('link') . '">' . "\n";
+        }
         echo '<img src="';
         echo the_field( 'show_image' );
-        echo '" />';
-        echo '</li>';
+        echo '" />' . "\n";
+        if ((!is_null(get_field('link')) && strlen(get_field('link')) > 0) ||
+          strlen(get_field('externer_link')) > 0) {
+          echo '</a>' . "\n";
+        }
+        echo '</li>' . "\n";
       }
     }
 
     if ($imgAvail == true)
     {
-      echo '</ul></div>';
+      echo '</ul></div>' . "\n";
 	  if ($first_img !== false)
 	  {
 	    echo '<noscript><img src="';
         echo the_field( 'show_image' );
-        echo '" style="width: 98%" /></noscript>';
+        echo '" style="width: 98%" /></noscript>' . "\n";
 	  }
     }
   ?>
