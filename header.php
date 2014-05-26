@@ -73,7 +73,7 @@ $parent_id = getTopmostParent();
 	    if (array_key_exists('s', $_GET)) {
           echo 'value="' . $_GET["s"] . '"';
         }
-      ?> /><input type="image" id="searchsubmit" src="<?php bloginfo('template_directory'); ?>/images/go_button.png" class="search_go" />
+      ?> /><!--<input type="image" id="searchsubmit" src="<?php bloginfo('template_directory'); ?>/images/go_button.png" class="search_go" />-->
       </form>
     </div>
     <?php wp_nav_menu( array( 'theme_location' => 'languages-menu',
