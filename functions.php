@@ -76,21 +76,29 @@ class Footer_Menu_Walker extends Walker_Nav_Menu {
     $attributes .= ! empty( $item->xfn )        ? ' rel="'    . esc_attr( $item->xfn        ) .'"' : '';
     $attributes .= ! empty( $item->url )        ? ' href="'   . esc_attr( $item->url        ) .'"' : '';
 
-    $item_output = $args->before;
+    $item_output = '';
+    if (! is_null($args) && is_object($args)) {
+        $item_output = $args->before;
+    }
 	if (! empty( $item->url )) {
-      $item_output .= '<a'. $attributes .'>';
+        $item_output .= '<a'. $attributes .'>';
 	} else {
-	  $item_output .= '<span class="underline">';
+	    $item_output .= '<span class="underline">';
 	}
-    $item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
+    if (! is_null($args) && is_object($args)) {
+        $item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
+    }
 	if (! empty( $item->url )) {
-      $item_output .= '</a>';
+        $item_output .= '</a>';
 	} else {
-	  $item_output .= '</span>';
+	    $item_output .= '</span>';
 	}
-    $item_output .= $args->after;
+    if (! is_null($args) && is_object($args)) {
+        $item_output .= $args->after;
+    }
 
-    $output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
+        $output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
+
   }
 }
 
@@ -142,15 +150,17 @@ class Top_Menu_Walker extends Walker_Nav_Menu {
     // We want normal text for the link
     $attributes .= ' class="clearlink"';
 	
-    $item_output = '<a'. $attributes .'>';
-    $item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
-    $item_output .= '</a>';
-	if (!isset($item->is_last))
-	{
-	  $item_output .= '&nbsp;|&nbsp;';
-	}
+    if (! is_null($args) && is_object($args)) {
+        $item_output = '<a'. $attributes .'>';
+        $item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
+        $item_output .= '</a>';
+	    if (!isset($item->is_last))
+	    {
+	      $item_output .= '&nbsp;|&nbsp;';
+	    }
 	
-	$output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
+	    $output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
+    }
   }
   
   /*
@@ -264,17 +274,19 @@ class Walker_Header_Popup_Menu extends Walker_Nav_Menu {
       $attributes .= ' class="whitelink"';
 	}
 
-    $item_output = $args->before;
-    $item_output .= '<a'. $attributes .'>';
-    $item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
-    $item_output .= '</a>';
-    if ($args->has_children && $depth==0)
-    {
-      $item_output .= '<img src="' . get_bloginfo('template_directory') . '/images/arrow_down.png" class="header_menu_arrow" />';
-    }
-    $item_output .= $args->after;
+    if (! is_null($args) && is_object($args)) {
+        $item_output = $args->before;
+        $item_output .= '<a'. $attributes .'>';
+        $item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
+        $item_output .= '</a>';
+        if ($args->has_children && $depth==0)
+        {
+          $item_output .= '<img src="' . get_bloginfo('template_directory') . '/images/arrow_down.png" class="header_menu_arrow" />';
+        }
+        $item_output .= $args->after;
 
-    $output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
+        $output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
+    }
   }
 
   /**
