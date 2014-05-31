@@ -1,75 +1,40 @@
-<?php get_header(); ?>
+<?php
+/**
+ * The Template for displaying all single posts
+ *
+ * @package WordPress
+ * @subpackage Twenty_Fourteen
+ * @since Twenty Fourteen 1.0
+ */
 
-<p>TEST TEST TEST</p>
+get_header(); ?>
 
-<div id="content">
-<?php include TEMPLATEPATH . '/landingsite.php'; ?>
+	<div id="primary" class="content-area">
+		<div id="content" class="site-content" role="main">
+			<?php
+				// Start the Loop.
+				while ( have_posts() ) : the_post();
 
-				
-<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-	
-		<div class="post">
-			<h1 id="post-<?php the_ID(); ?>"><a href="<?php echo get_permalink() ?>" rel="bookmark" title="Permanent Link: <?php the_title(); ?>"><?php the_title(); ?></a></h1>
-	
-			<div class="entrytext">
-				<?php the_content('<p class="serif">Lies den Rest dieses Eintrags &raquo;</p>'); ?>
-	
-				<?php link_pages('<p><strong>Seite:</strong> ', '</p>', 'number'); ?>
-	
-				<p class="postmetadata alt">
-					<small>
-						Dieser Eintrag wurde geschrieben 
-						am <?php the_date() ?> um <?php the_time() ?>
-						und ist gespeichert unter <?php the_category(', ') ?>.  <?php the_tags('Die Tags sind ', ', ','. ' ); ?> 
-						Du kannst alle Kommentare über den Kommentar <?php comments_rss_link('RSS 2.0'); ?> Feed verfolgen. 
-						
-						<?php if (('open' == $post-> comment_status) && ('open' == $post->ping_status)) {
-							// Both Comments and Pings are open ?>
-							Du kannst <a href="#respond">einen Kommentar schreiben</a>, oder einen <a href="<?php trackback_url(display); ?>">Trackback</a> von deiner Seite schicken.
-						
-						<?php } elseif (!('open' == $post-> comment_status) && ('open' == $post->ping_status)) {
-							// Only Pings are Open ?>
-							Die Kommentarfunktion ist ausgeschaltet, aber du kannst einen <a href="<?php trackback_url(display); ?> ">Trackback</a> von deiner Seite schicken.
-						
-						<?php } elseif (('open' == $post-> comment_status) && !('open' == $post->ping_status)) {
-							// Comments are open, Pings are not ?>
-							Du kannst <a href="#respond">einen Kommentar schreiben</a>. Trackbacks sind zur Zeit abgeschaltet.
-			
-						<?php } elseif (!('open' == $post-> comment_status) && !('open' == $post->ping_status)) {
-							// Neither Comments, nor Pings are open ?>
-							Kommentare und Treckbacks sind abgeschaltet.			
-						
-						<?php } edit_post_link('Bearbeite diesen Eintrag.','',''); ?>
-						
-					</small>
-				</p>
-	
-			</div>
-<!--
-<?php trackback_rdf(); ?>
--->
-		</div>
-<div id="related_posts">
-<?php wp_related_posts(); ?>
-</div>
+					/*
+					 * Include the post format-specific template for the content. If you want to
+					 * use this in a child theme, then include a file called called content-___.php
+					 * (where ___ is the post format) and that will be used instead.
+					 */
+					get_template_part( 'content', get_post_format() );
 
-		
-	<?php comments_template(); ?>
-	
-		<div class="navigation">
-			<div class="alignleft"><?php previous_post('&laquo; %','','yes') ?></div>
-			<div class="alignright"><?php next_post(' % &raquo;','','yes') ?></div>
-		</div>
-	
-	<?php endwhile; else: ?>
-	
-		<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
-	
-<?php endif; ?>
-	
-	</div>
+					// Previous/next post navigation.
+					twentyfourteen_post_nav();
 
+					// If comments are open or we have at least one comment, load up the comment template.
+					if ( comments_open() || get_comments_number() ) {
+						comments_template();
+					}
+				endwhile;
+			?>
+		</div><!-- #content -->
+	</div><!-- #primary -->
 
-</div>
-
-<?php get_footer(); ?>
+<?php
+get_sidebar( 'content' );
+get_sidebar();
+get_footer();

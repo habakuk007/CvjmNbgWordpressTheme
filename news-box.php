@@ -127,5 +127,5 @@
 	</ul>
   </div>
 
-  --> Alle News...
+  <p class="allnews_link"><a href="">Alle News</a></p>
 </div>
