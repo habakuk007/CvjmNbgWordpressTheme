@@ -667,8 +667,5 @@ function add_query_vars_filter( $vars )
 }
 add_filter( 'query_vars', 'add_query_vars_filter' );
 
-<<<<<<< .merge_file_a07488
-=======
-
 require get_template_directory() . '/inc/template-tags.php';
->>>>>>> .merge_file_a01352
+
