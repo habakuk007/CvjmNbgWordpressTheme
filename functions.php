@@ -2,6 +2,34 @@
 /* Place all needed callback functions here
  */
 
+
+/************* THUMBNAIL SIZE OPTIONS *************/
+
+// Thumbnail sizes
+add_theme_support( 'post-thumbnails' );
+add_image_size( 'preview64x64', 64, 64, true );
+
+/* 
+to add more sizes, simply copy a line from above 
+and change the dimensions & name. As long as you
+upload a "featured image" as large as the biggest
+set width or height, all the other sizes will be
+auto-cropped.
+
+To call a different size, simply change the text
+inside the thumbnail function.
+
+For example, to call the 300 x 300 sized image, 
+we would use the function:
+<?php the_post_thumbnail( 'bones-thumb-300' ); ?>
+for the 600 x 100 image:
+<?php the_post_thumbnail( 'bones-thumb-600' ); ?>
+
+You can change the names and dimensions to whatever
+you like. Enjoy!
+*/ 
+
+
 function register_my_menus() {
 
   // Main menus
@@ -76,21 +104,29 @@ class Footer_Menu_Walker extends Walker_Nav_Menu {
     $attributes .= ! empty( $item->xfn )        ? ' rel="'    . esc_attr( $item->xfn        ) .'"' : '';
     $attributes .= ! empty( $item->url )        ? ' href="'   . esc_attr( $item->url        ) .'"' : '';
 
-    $item_output = $args->before;
+    $item_output = '';
+    if (! is_null($args) && is_object($args)) {
+        $item_output = $args->before;
+    }
 	if (! empty( $item->url )) {
-      $item_output .= '<a'. $attributes .'>';
+        $item_output .= '<a'. $attributes .'>';
 	} else {
-	  $item_output .= '<span class="underline">';
+	    $item_output .= '<span class="underline">';
 	}
-    $item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
+    if (! is_null($args) && is_object($args)) {
+        $item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
+    }
 	if (! empty( $item->url )) {
-      $item_output .= '</a>';
+        $item_output .= '</a>';
 	} else {
-	  $item_output .= '</span>';
+	    $item_output .= '</span>';
 	}
-    $item_output .= $args->after;
+    if (! is_null($args) && is_object($args)) {
+        $item_output .= $args->after;
+    }
 
-    $output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
+        $output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
+
   }
 }
 
@@ -142,15 +178,17 @@ class Top_Menu_Walker extends Walker_Nav_Menu {
     // We want normal text for the link
     $attributes .= ' class="clearlink"';
 	
-    $item_output = '<a'. $attributes .'>';
-    $item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
-    $item_output .= '</a>';
-	if (!isset($item->is_last))
-	{
-	  $item_output .= '&nbsp;|&nbsp;';
-	}
+    if (! is_null($args) && is_object($args)) {
+        $item_output = '<a'. $attributes .'>';
+        $item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
+        $item_output .= '</a>';
+	    if (!isset($item->is_last))
+	    {
+	      $item_output .= '&nbsp;|&nbsp;';
+	    }
 	
-	$output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
+	    $output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
+    }
   }
   
   /*
@@ -264,17 +302,19 @@ class Walker_Header_Popup_Menu extends Walker_Nav_Menu {
       $attributes .= ' class="whitelink"';
 	}
 
-    $item_output = $args->before;
-    $item_output .= '<a'. $attributes .'>';
-    $item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
-    $item_output .= '</a>';
-    if ($args->has_children && $depth==0)
-    {
-      $item_output .= '<img src="' . get_bloginfo('template_directory') . '/images/arrow_down.png" class="header_menu_arrow" />';
-    }
-    $item_output .= $args->after;
+    if (! is_null($args) && is_object($args)) {
+        $item_output = $args->before;
+        $item_output .= '<a'. $attributes .'>';
+        $item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
+        $item_output .= '</a>';
+        if ($args->has_children && $depth==0)
+        {
+          $item_output .= '<img src="' . get_bloginfo('template_directory') . '/images/arrow_down.png" class="header_menu_arrow" />';
+        }
+        $item_output .= $args->after;
 
-    $output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
+        $output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
+    }
   }
 
   /**
@@ -442,6 +482,7 @@ function register_my_stylesheets() {
   wp_register_style('resp-nav', get_template_directory_uri() . '/css/responsive-nav.css', array(), $version, 'all');
   wp_register_style('sidr-style', get_template_directory_uri() . '/css/jquery.sidr.light.css', array(), '1.2.1', 'all');
   wp_register_style('treeview', get_template_directory_uri() . '/css/treeview.css', array(), $version, 'all');
+  wp_register_style('genericons', get_template_directory_uri() . '/css/genericons.css', array(), $version, 'all');
 }
 
 function register_my_js_files() {
@@ -456,6 +497,7 @@ function register_my_js_files() {
 function add_needed_stylesheets() {
   wp_enqueue_style( 'common-style');
   wp_enqueue_style( 'sidr-style');
+  wp_enqueue_style( 'genericons');
   /* index.php gets frontpage css */
   if ( is_home() )
   {
@@ -625,3 +667,8 @@ function add_query_vars_filter( $vars )
 }
 add_filter( 'query_vars', 'add_query_vars_filter' );
 
+<<<<<<< .merge_file_a07488
+=======
+
+require get_template_directory() . '/inc/template-tags.php';
+>>>>>>> .merge_file_a01352
