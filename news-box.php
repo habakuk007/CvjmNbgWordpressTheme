@@ -96,11 +96,6 @@
      <ul class="media-list">
  <?php foreach ($postslist as $post) : setup_postdata($post); ?>
 	    <li class="media">
-            <h4 class="media-heading">
-                <a href="<?php the_permalink(); ?>" 
-                    title="<?php the_title(); ?>"><?php the_title(); ?></a> 
-                    <small>vom <?php the_date(); ?></small>
-            </h4>
             <a class="pull-left" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
                 <?php if (has_post_thumbnail()) : ?>
                    <?php the_post_thumbnail('preview64x64'); ?>
@@ -111,14 +106,19 @@
                  <!-- Categorie Image URL: <?php echo getDefaultCategoryImageUrl($post) ?>-->
                  <?php endif; ?>
              </a>
+            <h4 class="media-heading"><a href="<?php the_permalink(); ?>" 
+                    title="<?php the_title(); ?>"><?php the_title(); ?></a>
+                    <small>vom <?php the_time('j. F Y, G:i'); ?> Uhr</small></h4>
+            <small class="media-subline">von <?php the_author(); ?>, 
+                eingeordnet in <span><?php the_category(', '); ?></span></small>
             <div class="media-body">
 
 				<div class="news-content">
                     <?php the_excerpt();?>
-					<p><a class="btn btn-small" 
+					<p class="read-all">
+                        <a class="read-all-link"
 							href="<?php the_permalink(); ?>" 
-							title="<?php the_title(); ?>">Alles lesen &raquo;</a><br />
-                        <small>Von <?php the_author(); ?>  in <?php the_category(' &gt; '); ?></small>
+							title="<?php the_title(); ?>">Alles lesen &raquo;</a>
                     </p>
 				</div>
             </div>
@@ -127,5 +127,7 @@
 	</ul>
   </div>
 
+<!--
   <p class="allnews_link"><a href="">Alle News</a></p>
+-->
 </div>

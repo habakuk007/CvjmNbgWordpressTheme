@@ -352,27 +352,53 @@ a.newstitle:hover {
 }*/
 
 .media-list {
-    list-style-type: none;
+    list-style:  none outside none;
     padding-left: 0px;
 }
 
-.media .media-heading {
-    margin-bottom: 5px;
+.media-list a {
+    text-decoration: none;
 }
 
-.media .pull-left {
+.media-list a:hover {
+    text-decoration: underline;
+}
+
+
+.media-heading {
+    margin-bottom: 0px;
+}
+
+/*.media-subline {
+     white-space: nowrap;
+     overflow: hidden;
+     text-overflow: ellipsis;
+     -o-text-overflow: ellipsis;
+     -moz-binding: url( 'bindings.xml#ellipsis' );
+}*/
+
+.pull-left {
     position: relative;
     left: 0;
     top: 0px;
     float: left;
 }
 
-.media .media-object {
-    padding:  0px 5px 5px 0px; 
+.media-object {
+    padding:  0px 10px 10px 0px; 
 }
 
-.media .media-body {
+.media-body {
     text-align: left;
+    overflow: hidden;
+}
+
+.read-all{
+    padding-top: 5px;
+}
+
+.read-all-link{
+    font-weight: bold;
 }
 
 /* Event box */
@@ -687,14 +713,12 @@ and (min-width : 481px) {
     height: 1.3em;
     font-size: 1.5em;
     color: #FFF;
-    width: 100%;
     padding-left: 1%;
     padding-right: 1%;
 }
 
 .entry-header {
     width: 100%;
-
 }
 
     @media only screen and (min-width : 481px) {
@@ -703,7 +727,6 @@ and (min-width : 481px) {
             padding-right: 8em;
         }
         .entry-header {
-            width: 88%;
         }
     }
     
@@ -713,7 +736,6 @@ and (min-width : 481px) {
             padding-right: 6em;
         }
         .entry-header {
-              width: 98%;
               clear: both;
          }
     }
@@ -722,14 +744,12 @@ and (min-width : 481px) {
 .related_post_title {
     background-color: #C62026;
     color: #FFF;
-    width: 100%;
     padding-left: 1%;
     padding-right: 1%;
 }
 
  @media only screen and (min-width : 481px) {
     .related_post_title {
-            width: 88%;
             padding-left : 8em;
             padding-right: 8em;
     }
@@ -737,7 +757,6 @@ and (min-width : 481px) {
     
     @media only screen and (min-width : 320px) and (max-width : 480px) {
     .related_post_title {
-            width: 98%;
             padding-left : 6em;
             padding-right: 6em;
     }
