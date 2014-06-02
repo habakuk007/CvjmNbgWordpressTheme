@@ -599,6 +599,27 @@ function getTopmostParent()
   return $parent_id;
 }
 
+function getAssociationParent()
+{
+  global $post;
+  $parent_id = 0;
+  
+  if ($post && is_object($post)) {
+    $parent_id = $post->ID;
+    if ($post->post_parent != 0)
+    {
+      $parent_id = $post->ID;
+      $next_id = get_post($parent_id)->post_parent;
+      while (strcmp(get_page_template_slug($parent_id), 'association.php') != 0 && $next_id != 0) {
+        $parent_id = $next_id;
+        $next_id = get_post($parent_id)->post_parent;
+      }
+    }
+  }
+ 
+  return $parent_id;
+}
+
 add_filter( 'wpthumb_image_post', 'pdw_bij_add_greyscale_filter', 10, 2 );
 
 function pdw_bij_add_greyscale_filter( WP_Image_Editor $editor, $args ) {

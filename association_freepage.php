@@ -4,7 +4,7 @@ Template Name: Verein Freiseite
 */
 get_header();
 
-$parent_id = getTopmostParent();
+$parent_id = getAssociationParent();
 
 /* Save the values for our sub modules, because our page fields are gone
  * if the first sub module makes a new query */

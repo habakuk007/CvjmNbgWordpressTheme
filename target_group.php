@@ -32,7 +32,7 @@ if ($cvjms) {
 }?>
 
 <div class="target_group_headline_container">
-  <span class="target_group_headline"><?php the_title()?></span>
+  <p class="target_group_headline"><?php the_title()?></p>
   <img src="<?php the_field( 'circle_picture' )?>" class="target_group_circle_image" />
 </div>
 
@@ -40,7 +40,7 @@ if ($cvjms) {
   <div class="target_group_desc_col target_group_desc_col_left">
     <h1 class="target_group_desc_headline"><?php the_field( 'title_first_col' ) ?></h1>
     <p class="target_group_desc_body"><?php the_field( 'content_first_col' ) ?><br>
-    <a href="#Specials">Alle Specials</a></p>
+    <a href="#Groups">Alle Gruppen</a></p>
   </div>
   <div class="target_group_desc_col target_group_desc_col_middle">
     <h1 class="target_group_desc_headline"><?php the_field( 'title_second_col' ) ?></h1>
@@ -50,7 +50,7 @@ if ($cvjms) {
   <div class="target_group_desc_col target_group_desc_col_right">
     <h1 class="target_group_desc_headline"><?php the_field( 'title_third_col' ) ?></h1>
     <p class="target_group_desc_body"><?php the_field( 'content_third_col' ) ?><br>
-    <a href="#Groups">Alle Gruppen</a></p>
+    <a href="#Specials">Alle Specials</a></p>
   </div>
 </div>
 

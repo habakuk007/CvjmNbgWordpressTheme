@@ -8,10 +8,11 @@
 
 .target_group_headline {
   background-color: #c62026;
-  height: 1.3em;
-  font-size: 1.5em;
+  line-height: 1.5em;
+  font-size: 2em;
   color: #FFFFFF;
-  width: 100%;
+  display: inline-block;
+  width: 30%;
 }
 
 .target_group_desc_headline {
@@ -41,6 +42,7 @@
 .target_group_contact_image {
   width: 87px;
   float: left;
+  padding-right: 0.5em;
 }
 
 .target_group_content {
@@ -102,13 +104,12 @@ and (min-width : 481px) {
 }
 
 .target_group_headline {
-  padding-left: 8em;
-  padding-right: 8em;
+  padding-left: 20%;
 }
 
 .target_group_circle_image {
-  width: 9em;
-  margin-left: -25em;
+  width: 11em;
+  margin-left: -45%;
   margin-bottom: 0.5em;
 }
 

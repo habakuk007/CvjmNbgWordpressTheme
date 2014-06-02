@@ -10,7 +10,7 @@
  */
 
 /* We get all values for the standard things from the parent page, so we need the ID of it */
-$parent_id = getTopmostParent();
+$parent_id = getAssociationParent();
 
 ?><!DOCTYPE html>
 <!--[if IE 7]>
