@@ -28,7 +28,10 @@ get_header(); ?>
       'glaube' => 'yes',
       'gruppe' => 'yes',
       'sport' => 'yes',
-      'urlaub' => 'yes');
+      'urlaub' => 'yes',
+      'gottesdienst' => 'yes',
+      'seminar' => 'yes'
+      );
     require(locate_template('event-box.php')); ?>
 
   <?php $news_name = 'news'; require(locate_template('news-box.php')); ?>
@@ -41,4 +44,4 @@ get_header(); ?>
       'http://podcasts.cvjm-nuernberg.de/', 'http://www.treppenhaus-lounge.de');
     require(locate_template('sidebar.php')); ?>
 
-<?php get_footer(); ?>
+<?php get_footer('menu'); ?>

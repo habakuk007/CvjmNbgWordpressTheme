@@ -39,4 +39,4 @@ get_header();
   <?php require(locate_template('sidebar_links.php')); ?>
 </div>
 
-<?php get_footer(); ?>
+<?php get_footer('menu'); ?>

@@ -236,6 +236,7 @@ hr.veryheight {
 /* main content */
 .main_container {
   float: left;
+  overflow: hidden;
 }
 
 /* First contact */

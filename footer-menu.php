@@ -11,7 +11,9 @@
  */
 ?>
 
-<div class="footercontainer">&nbsp;</div>
+<?php wp_nav_menu( array( 'theme_location' => 'footer-menu',
+                            'container_class' => 'footercontainer',
+                            'walker' =>  new Footer_Menu_Walker() ) ); ?>
 
 <?php wp_footer(); ?>
 </body>

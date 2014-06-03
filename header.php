@@ -52,12 +52,14 @@ $parent_id = getAssociationParent();
 <body <?php body_class(); ?>>
 
 <div class="header">
-  <a href="<?php echo home_url();?>"><img src="<?php 
-    if (get_field('vh_logo', $parent_id)) {
+  <?php 
+  if (get_field('vh_logo', $parent_id)) {
+    echo '<a href="' . get_permalink( $parent_id ) . '"><img src="';
 	  echo get_field('vh_logo', $parent_id);
 	} else {
+    echo '<a href="' . home_url() . '"><img src="';
 	  echo bloginfo('template_directory');
-      echo '/images/logo_main.png';
+    echo '/images/logo_main.png';
 	}
 ?>" class="headlogo"/></a> 
   <div class="header_right_nav_container">
