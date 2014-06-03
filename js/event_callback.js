@@ -45,8 +45,8 @@ $('.callajax').click();
 }
 
 $(document).ready(function() {
-  $("a[rel]").overlay({
-	fixed: false
+  $(".evtermine_title a[rel]").overlay({
+	  fixed: false
   });
   
   $('.callajax').click(event_ajax);

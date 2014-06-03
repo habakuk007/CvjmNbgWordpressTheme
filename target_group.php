@@ -40,17 +40,14 @@ if ($cvjms) {
   <div class="target_group_desc_col target_group_desc_col_left">
     <h1 class="target_group_desc_headline"><?php the_field( 'title_first_col' ) ?></h1>
     <p class="target_group_desc_body"><?php the_field( 'content_first_col' ) ?><br>
-    <a href="#Groups">Alle Gruppen</a></p>
   </div>
   <div class="target_group_desc_col target_group_desc_col_middle">
     <h1 class="target_group_desc_headline"><?php the_field( 'title_second_col' ) ?></h1>
     <p class="target_group_desc_body"><?php the_field( 'content_second_col' ) ?><br>
-    <a href="#Holidays">Alle Freizeiten</a></p>
   </div>
   <div class="target_group_desc_col target_group_desc_col_right">
     <h1 class="target_group_desc_headline"><?php the_field( 'title_third_col' ) ?></h1>
     <p class="target_group_desc_body"><?php the_field( 'content_third_col' ) ?><br>
-    <a href="#Specials">Alle Specials</a></p>
   </div>
 </div>
 
@@ -80,7 +77,7 @@ if ($cvjms) {
     $contact_query->the_post();
     echo '<div class="target_group_contact_entry">' . "\n";
     echo '<img src="';
-    echo the_field( 'bild' );
+    echo wpthumb( get_field( 'bild' ), 'greyscale=1');
     echo '" class="target_group_contact_image" />' . "\n";
     echo '<span>';
     echo the_field( 'responsible_association' );
