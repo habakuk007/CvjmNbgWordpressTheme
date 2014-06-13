@@ -27,7 +27,7 @@ function event_ajax(ev) {
 	// Replace event box HTML code on the fly
 	$( ".eventbox" ).replaceWith( response );
 	$('.callajax').click(event_ajax);
-	$("a[rel]").overlay({
+	$(".evtermine_title a[rel]").overlay({
 	  fixed: false
 	});
   })
