@@ -1,5 +1,5 @@
 <?php
-require(locate_template('/home/cvjmweb/database_landheim.inc'));
+require('/home/cvjmweb/database_landheim.inc');
 
 get_header();
 
