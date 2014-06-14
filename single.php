@@ -25,12 +25,12 @@ get_header(); ?>
 					
 					/* temporarily disabled
 					// Previous/next post navigation.
-					twentyfourteen_post_nav();
+					//twentyfourteen_post_nav();
 
 					// If comments are open or we have at least one comment, load up the comment template.
-					if ( comments_open() || get_comments_number() ) {
-						comments_template();
-					}
+					//if ( comments_open() || get_comments_number() ) {
+					//	comments_template();
+					//}
 					*/
 				endwhile;
 			?>
