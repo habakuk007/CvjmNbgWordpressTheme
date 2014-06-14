@@ -21,7 +21,9 @@ get_header(); ?>
 					 * (where ___ is the post format) and that will be used instead.
 					 */
 					get_template_part( 'content', get_post_format() );
-
+					
+					
+					/* temporarily disabled
 					// Previous/next post navigation.
 					twentyfourteen_post_nav();
 
@@ -29,6 +31,7 @@ get_header(); ?>
 					if ( comments_open() || get_comments_number() ) {
 						comments_template();
 					}
+					*/
 				endwhile;
 			?>
 		</div><!-- #content -->
