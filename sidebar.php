@@ -1,4 +1,5 @@
 ﻿<div class="right_sidebar_container">
+  <!--
   <div class="first_contact_container">
     <img src="<?php bloginfo('template_directory'); ?>/images/first_contact_logo.jpg" class="sidebar_header_image">
     <form>
@@ -9,6 +10,7 @@
       <input type="submit" value="abschicken" class="first_contact_submit">
     </form>
   </div>
+  /-->
   <div class="map_container">
     <img src="<?php bloginfo('template_directory'); ?>/images/CVJM_Vereine_Nuernberg_Karte.jpg" width="600" height="450" class="map_image" usemap="#citymap" />
 	<map name="citymap" id="citymap">
