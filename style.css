@@ -15,10 +15,10 @@ This theme, like WordPress, is licensed under the GPL.
 
 @font-face {
    font-family: 'MyriadPro';
-   src: url('http://neu.cvjm-nuernberg.de/wp-content/themes/cvjm2013/fonts/MyriadPro-Regular.eot'),
+   src: url('/wp-content/themes/cvjm2013/fonts/MyriadPro-Regular.eot'),
    local('MyriadPro-Regular'),
-   url('http://neu.cvjm-nuernberg.de/wp-content/themes/cvjm2013/fonts/MyriadPro-Regular.woff') format('woff'),
-   url('http://neu.cvjm-nuernberg.de/wp-content/themes/cvjm2013/fonts/MyriadPro-Regular.otf') format('opentype');
+   url('/wp-content/themes/cvjm2013/fonts/MyriadPro-Regular.woff') format('woff'),
+   url('/wp-content/themes/cvjm2013/fonts/MyriadPro-Regular.otf') format('opentype');
 }
 
 /* Wordpress standard formats */
