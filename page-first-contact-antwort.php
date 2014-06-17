@@ -14,7 +14,7 @@ $headers = 'From: '. $to . "\r\n" .
 
 $check_text = '';
 $mail_text = '';
-$vals = array_filter(_$POST);
+$vals = array_filter($_POST);
 if (!empty($vals))
 {
   foreach ($vals as $key => $value) {
