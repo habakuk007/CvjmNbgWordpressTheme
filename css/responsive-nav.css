@@ -45,6 +45,7 @@
   -webkit-box-shadow: 3px 3px 3px #ccc;
   box-shadow:         3px 3px 3px #ccc;
   transition: visibility 0s linear 0.2s, opacity 0.2s linear;
+  z-index: 10000;
 }
 
 .nav-collapse ul li ul li{
