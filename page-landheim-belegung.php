@@ -1,5 +1,5 @@
 <?php
-require(locate_template('database.inc'));
+require('/home/cvjmweb/database_landheim.inc');
 require_once(locate_template('recaptchalib.php'));
 // ReCaptcha config
 $publickey = "6LdBEe4SAAAAAAKMLr08QJmjF9xWTcxQelmTAT6a"; // you got this from the signup page
