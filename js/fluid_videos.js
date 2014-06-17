@@ -18,7 +18,7 @@ $(window).resize(function() {
 $(document).ready(function() {
   // Embed video
   // Find all YouTube and vimeo videos
-  $allVideos = $("iframe[src^='http://www.youtube.com'],iframe[src^='http://player.vimeo.com']");
+  $allVideos = $("iframe[src^='//www.youtube.com'],iframe[src^='//player.vimeo.com']");
 
   // The element that is fluid width
   $fluidEl = $(".main_container");
