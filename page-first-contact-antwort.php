@@ -20,7 +20,6 @@ if (!empty($vals))
 	*/
 	$from = str_replace(':', '', strip_tags($vals["first_contact_mail"]));
 	$headers = "From: <" . $from . "> \r\n" .
-	  "To: " . $to . " \r\n".
 	  "Sender: webmaster@cvjm-nuernberg.de\r\n" . 
 	  "X-FirstContactVersion: 10 \r\n" ;
 	  
