@@ -1,8 +1,7 @@
 ﻿<div class="right_sidebar_container">
-  <!--
   <div class="first_contact_container">
     <img src="<?php bloginfo('template_directory'); ?>/images/first_contact_logo.jpg" class="sidebar_header_image">
-    <form>
+    <form action="<?php echo esc_url( get_permalink( get_page_by_title( 'First-Contact-Antwort' ) ) ); ?>" method="POST">
       <input name="first_contact_mail" type="text" class="first_contact_text_input" placeholder="E-Mail Adresse">
       <input name="first_contact_name" type="text" class="first_contact_text_input" placeholder="Name">
       <input name="first_contact_age" type="text" class="first_contact_text_input" placeholder="Alter">
@@ -10,7 +9,6 @@
       <input type="submit" value="abschicken" class="first_contact_submit">
     </form>
   </div>
-  /-->
   <div class="map_container">
     <img src="<?php bloginfo('template_directory'); ?>/images/CVJM_Vereine_Nuernberg_Karte.jpg" width="600" height="450" class="map_image" usemap="#citymap" />
 	<map name="citymap" id="citymap">

@@ -40,7 +40,7 @@ get_header(); ?>
       echo '<p>Es ist ein Fehler beim Senden der Nachricht aufgetreten. Bitte versuche es sp&auml;ter noch einmal.';
       echo 'Sollte das Problem l&aunl;nger bestehen, so gib doch bitte unserem Webmaster Bescheid.</p>' . "\n";
     } else {
-      echo '<p>Deine Nachricht wurde erfolgreich verschickt. Einer der CVJM in N&uuml;rnberg wird sich bald bei dir melden.</p>' . "\n";
+      echo '<p>Deine Nachricht wurde erfolgreich verschickt.</p>' . "\n";
     }
 	echo apply_filters('the_content', $post->post_content);
   ?>
