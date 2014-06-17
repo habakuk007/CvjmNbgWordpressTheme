@@ -19,10 +19,12 @@ if (!empty($vals))
 	array(4) { ["first_contact_mail"]=> string(31) "stefan.wagner@cvjm-nuernberg.de" ["first_contact_name"]=> string(6) "Stefan" ["first_contact_age"]=> string(14) "So Ende/Anfang" ["first_contact_issue"]=> string(112) "#2 Test, Test, Test, 1, 2, 3 Geht das so oder nicht so? Äh, daß ist sö ähnlich. Ciao! Stefan" } 
 	*/
 	$from = str_replace(':', '', strip_tags($vals["first_contact_mail"]));
-	$headers = "From: <$from> \r\n" .
-	  "To: $to \r\n".
+	$headers = "From: <" . $from . "> \r\n" .
+	  "To: " . $to . " \r\n".
 	  "Sender: webmaster@cvjm-nuernberg.de\r\n" . 
 	  "X-FirstContactVersion: 10 \r\n" ;
+	  
+	  
 
   foreach ($vals as $key => $value) {
     $check_text .= $value;
