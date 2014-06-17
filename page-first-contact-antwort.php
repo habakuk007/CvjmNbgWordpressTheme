@@ -1,7 +1,7 @@
 <?php
 
 /* Form submit stuff */
-var $sent = false;
+$sent = false;
 $to = array( "kontakt@cvjm-gostenhof.de",
   "grossgruendlach@cvjm-nuernberg.de",
   "kornmarkt@cvjm-nuernberg.de",
