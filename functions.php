@@ -133,7 +133,10 @@ class Footer_Menu_Walker extends Walker_Nav_Menu {
 function menu_has_next($sorted_menu_items, $args) {
     $parents = array();
 
-	end($sorted_menu_items)->is_last = true;
+	$end = end($sorted_menu_items);
+	if (isset($end->is_last)) {
+		$end->is_last = true;
+	}
 
     return $sorted_menu_items;
 }
