@@ -28,14 +28,15 @@ if (!empty($vals))
 	  "Reply-To: $replyTo \r\n" .
 	  "Sender: webmaster@cvjm-nuernberg.de\r\n" . 
 	  "X-FirstContactVersion: 12 \r\n" ;
-	  
-	$mail_text = "Name: \t\t" . $vals['first_contact_name']. " \r\n" .
-				 "E-Mail: \t" . $vals['first_contact_mail'] . " \r\n" .
-				 "Alter: \t\t" . $vals['first_contact_age'] . "\r\n\r\n" .
-				 $vals['first_contact_issue'];
-	$mail_text = htmlspecialchars($mail_text);
-				 
-    $check_text = $vals['first_contact_issue'] . $vals['first_contact_mail'];
+	
+	if (isset($vals['first_contact_mail']) && $vals['first_contact_mail'] !== '') {
+		$mail_text = "Name: \t\t" . $vals['first_contact_name']. " \r\n" .
+					 "E-Mail: \t" . $vals['first_contact_mail'] . " \r\n" .
+					 "Alter: \t\t" . $vals['first_contact_age'] . "\r\n\r\n" .
+					 $vals['first_contact_issue'];
+		$mail_text = htmlspecialchars($mail_text);		 
+		$check_text = $vals['first_contact_issue'] . $vals['first_contact_mail'];
+	}
     
 	$isRobot = (isset($vals['first_contact_diefalle']) && $vals['first_contact_diefalle'] !== '');
 	
