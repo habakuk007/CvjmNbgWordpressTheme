@@ -1,5 +1,5 @@
 (function($) {
-var $allVideos;
+var $allObjects;
 var $fluidEl;
 
 // When the window is resized we resize all videos
@@ -7,7 +7,7 @@ $(window).resize(function() {
   var $newWidth = $fluidEl.width();
 
   // Resize all videos according to their own aspect ratio
-  $allVideos.each(function() {
+  $allObjects.each(function() {
 	var $el = $(this);
 	$el
 	  .width($newWidth)
@@ -16,17 +16,17 @@ $(window).resize(function() {
 });
 
 $(document).ready(function() {
-  // Embed video
-  // Find all YouTube and vimeo videos
-  $allVideos = $("iframe[src^='//www.youtube.com'],iframe[src^='//player.vimeo.com']");
+  // Embed video and objects
+  // Find all YouTube and vimeo videos and issuu pdfs
+  $allObjects = $("iframe[src^='//www.youtube.com'],iframe[src^='//player.vimeo.com'],div[data-url^='//issuu.com'],.issuuembed");
 
   // The element that is fluid width
   $fluidEl = $(".main_container");
 
   // Figure out and save aspect ratio for each video
-  $allVideos.each(function() {
+  $allObjects.each(function() {
 	$(this)
-	  .data('aspectRatio', this.height / this.width)
+	  .data('aspectRatio', this.scrollHeight / this.scrollWidth)
 
 	  // and remove the hard coded width/height
 	  .removeAttr('height')
