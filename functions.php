@@ -525,7 +525,7 @@ function add_needed_javascript() {
   wp_enqueue_script( 'fluid-video' );
   wp_enqueue_script( 'fluid-imgmap' );
   wp_enqueue_script( 'event-callback' );
-  $params = array('template_path' => get_template_directory_uri(), 'admin_url' => admin_url( 'admin-ajax.php' ));
+  $params = array('template_path' => get_template_directory_uri(), 'admin_url' => admin_url( 'admin-ajax.php', 'http'));
   wp_localize_script( 'event-callback', 'params', $params);
   wp_enqueue_script( 'sidr' );
 }
