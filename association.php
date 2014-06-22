@@ -10,6 +10,7 @@ get_header();
   $circle_id = get_field( 'vh_category_circles' );
   $teaser_id = get_field( 'vh_category_teaser' );
   $event_vid = get_field( 'vh_ev_vid' );
+  $event_add_query = get_field( 'add_query' );
   $news_id = get_field( 'vh_category_news' );
   $association_name = get_field( 'vh_association_name' );
   $association_url = get_field( 'vh_url' );
