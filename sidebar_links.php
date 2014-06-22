@@ -4,7 +4,7 @@
         the_row();
         echo '<div class="sidebar_image_container">' . "\n";
         echo '<a href="';
-        if ( strlen($parent_id) == 0 ) {
+        if ( strlen(get_sub_field('url_zu_externer_seite', $parent_id)) == 0 ) {
           the_sub_field('interne_seite', $parent_id);
         } else {
           the_sub_field('url_zu_externer_seite', $parent_id);
