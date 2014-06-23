@@ -51,6 +51,9 @@ function adjust_roles() {
   if (!$roleObject->has_cap( 'edit_theme_options' ) ) {
       $roleObject->add_cap( 'edit_theme_options' );
   }
+  if (!$roleObject->has_cap( 'unfiltered_html' ) ) {
+    $role->add_cap("unfiltered_html");
+  }
 }
 
 /* This makes post type 'page' public queryable
@@ -65,7 +68,7 @@ function fix_page_query() {
 }
 
 add_action ('init', 'register_my_menus');
-add_action ('init', 'adjust_roles');
+add_action ('admin_init', 'adjust_roles');
 add_action( 'init', 'fix_page_query');
 
 function hide_menu() {
@@ -528,7 +531,12 @@ function add_needed_javascript() {
   wp_enqueue_script( 'fluid-video' );
   wp_enqueue_script( 'fluid-imgmap' );
   wp_enqueue_script( 'event-callback' );
-  $params = array('template_path' => get_template_directory_uri(), 'admin_url' => admin_url( 'admin-ajax.php', 'http'));
+  $method = 'http';
+  if (is_ssl())
+  {
+    $method = 'https';
+  }
+  $params = array('template_path' => get_template_directory_uri(), 'admin_url' => admin_url( 'admin-ajax.php', $method));
   wp_localize_script( 'event-callback', 'params', $params);
   wp_enqueue_script( 'sidr' );
 }
