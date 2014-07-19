@@ -49,6 +49,10 @@
   padding-top: 1.5em;
 }
 
+.target_group_right_sidebar {
+  padding-top: 4em;
+}
+
 /* Flexible layout */
 @media only screen
 and (min-width : 320px)
@@ -108,7 +112,7 @@ and (min-width : 481px) {
 }
 
 .target_group_circle_image {
-  width: 11em;
+  width: 15%;
   margin-left: -45%;
   margin-bottom: 0.5em;
 }
@@ -120,7 +124,7 @@ and (min-width : 481px) {
 }
 
 .target_group_desc_col {
-  width: 29%;
+  width: 28%;
   display: inline-block;
   vertical-align: top;
 }

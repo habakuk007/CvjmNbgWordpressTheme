@@ -106,7 +106,7 @@ if ($cvjms) {
   <?php require(locate_template('news-box.php')); ?>
 </div>
 
-<div class="right_sidebar_container">
+<div class="target_group_right_sidebar right_sidebar_container">
   <?php $pics = array( 'Bildergalerie_Logo.jpg', 'Videogalerie_Logo.jpg', 'Podcast_Logo.jpg');
     $links = array( 'http://galerie.cvjm-nuernberg.de/', 'http://vimeo.com/cvjmnuernberg/videos',
       'http://podcasts.cvjm-nuernberg.de/');

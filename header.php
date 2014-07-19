@@ -88,7 +88,7 @@ $parent_id = getAssociationParent();
                             'menu_class'      => 'header-menu-list',
                             'walker' => new Walker_Header_Popup_Menu() ) ); ?>
                             
-  <a href="javascript:;" id="navtoggle">
+  <a href="#sidr" id="navtoggle">
     <div id="menu-button">
       <span style="float: right;">Menu</span>
       <div></div>
