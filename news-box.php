@@ -10,13 +10,13 @@
     **/
 
     define("NumberOfPosts", 6);
-    define("StdNewsCategoryName", 'news');
+    define("StdNewsCategoryName", 'News');
     define("DefaultImageUrlNamePart",'/images/NewsDefault'); //Should be 64x64px; if a image tries to add the first category to the image if 
     define("DefaultImageUrlExtension", '.jpg');
     define("TemplateDirectory", get_template_directory_uri());
 
     /*-------------------------*/
-    $args = array('numberposts' => NumberOfPosts, 'post_status'=>"publish",'post_type'=>"post",'orderby'=>"post_date");
+    $args = array('orderby'=>array('date'=>'DESC'),'numberposts'=>NumberOfPosts,'post_status'=>"publish",'post_type'=>"post");
     if (isset($news_name))
     {
       $args['category_name'] = $news_name;
@@ -107,18 +107,19 @@
                  <?php endif; ?>
              </a>
             <h4 class="media-heading"><a href="<?php the_permalink(); ?>" 
-                    title="<?php the_title(); ?>"><?php the_title(); ?></a>
+                    title="<?php the_title(); ?>" target="_blank"><?php the_title(); ?></a>
                     <small>vom <?php the_time('j. F Y, G:i'); ?> Uhr</small></h4>
             <small class="media-subline">von <?php the_author(); ?>, 
                 eingeordnet in <span><?php the_category(', '); ?></span></small>
             <div class="media-body">
 
 				<div class="news-content">
-                    <?php the_excerpt();?>
+                    <?php the_advanced_excerpt('length=55&length_type=words&no_custom=1&ellipsis=%26hellip;&allowed_tags=br,p,i,em'); ?>
 					<p class="read-all">
                         <a class="read-all-link"
 							href="<?php the_permalink(); ?>" 
-							title="<?php the_title(); ?>">Alles lesen &raquo;</a>
+							title="<?php the_title(); ?>"  
+                                                        target="_blank">Alles lesen &raquo;</a>
                     </p>
 				</div>
             </div>
@@ -128,6 +129,6 @@
   </div>
 
 <!--
-  <p class="allnews_link"><a href="">Alle News</a></p>
--->
+  <p class="allnews_link"><a href="http://blog.cvjm-nuernberg.de/" target="_blank">Alle News</a></p>
+/-->
 </div>
