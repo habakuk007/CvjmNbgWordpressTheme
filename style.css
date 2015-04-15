@@ -321,6 +321,15 @@ hr.veryheight {
   color: #FFFFFF;
 }
 
+.losung-copy {
+  font-size: xx-small;
+  color: #FFFFFF;
+}
+
+.losung-copy  a {
+  text-decoration: none;
+}
+
 .widgettitle {
   font-size: medium;
   color: #FFFFFF;
