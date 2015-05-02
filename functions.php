@@ -370,6 +370,7 @@ class Walker_Header_Popup_Menu extends Walker_Nav_Menu {
  * Walker function for association tree view menus
  **********************/
 class Walker_Treeview_Menu extends Walker_Nav_Menu {
+  private $parentid = '';
   /**
    * @see Walker::start_lvl()
    * @since 3.0.0
@@ -395,26 +396,43 @@ class Walker_Treeview_Menu extends Walker_Nav_Menu {
   function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
     $indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
 
-    $id = apply_filters( 'nav_menu_item_id', 'menu-item-'. $item->ID, $item, $args );
+    // This filter function makes id empty if the entry ($item->ID) has always been used an
+    // other menu. This is not good, as we use the links in multiple menus.
+    // That's why we do not use this filter and generate a unique string
+    $id = 'tree-menu-item-' . $item->ID;
+    //$id = apply_filters( 'nav_menu_item_id', 'tree-menu-item-' . $item->ID, $item, $args, $depth );
     $id = $id ? esc_attr( $id ) : '';
 
     $output .= $indent;
     if ($args->has_children)
     {
-      $output .= $indent . '<li><input type="checkbox" id="' . $id . '">';
+      $this->parentid = $id;
+      $output .= $indent . '<li><input type="checkbox" id="checkbox-' . $id . '"';
+      if (strcmp(get_query_var('menu_expand'), $id) == 0)
+      {
+        $output .= ' checked';
+      }
+      $output .= '>';
     } else {
-      $output .= $indent . '<li id="' . $id . '" class="treeview_nocolapse">';
+      $output .= $indent . '<li id="li-' . $id . '" class="treeview_nocolapse">';
     }
 
     $attributes  = ! empty( $item->attr_title ) ? ' title="'  . esc_attr( $item->attr_title ) .'"' : '';
     $attributes .= ! empty( $item->target )     ? ' target="' . esc_attr( $item->target     ) .'"' : '';
     $attributes .= ! empty( $item->xfn )        ? ' rel="'    . esc_attr( $item->xfn        ) .'"' : '';
-    $attributes .= ! empty( $item->url )        ? ' href="'   . esc_attr( $item->url        ) .'"' : '';
+    if ($args->has_children)
+    {
+      $attributes .= ! empty( $item->url )        ? ' href="'   . esc_attr( $item->url        ) . '?menu_expand=' . $id . '"' : '';
+    } else if ($depth > 0) {
+      $attributes .= ! empty( $item->url )        ? ' href="'   . esc_attr( $item->url        ) . '?menu_expand=' . $this->parentid . '"' : '';
+    } else {
+      $attributes .= ! empty( $item->url )        ? ' href="'   . esc_attr( $item->url        ) . '"' : '';
+    }
     $attributes .= ' class="clearlink"';
     
     if ($args->has_children)
     {
-      $output .= '<label for="' . $id . '">';
+      $output .= '<label for="label-' . $id . '">';
     }
 
     $item_output = $args->before;
@@ -694,6 +712,7 @@ function add_query_vars_filter( $vars )
     $vars[] = "belyear";
     $vars[] = "belaction";
     $vars[] = "belentry";
+    $vars[] = "menu_expand";
   //}
   return $vars;
 }
