@@ -31,7 +31,7 @@ $parent_id = getAssociationParent();
       } else if (strcmp(get_query_var('belaction'), "new") == 0) {
         $daynum = getdate(time());
 
-        print "<form action=\"" . get_permalink() . "?belaction=donew&belmonth=" . get_query_var('belmonth') . "&elyear=" . get_query_var('belyear') . "\" method=\"POST\">\n";
+        print "<form action=\"" . get_permalink() . "?belaction=donew&belmonth=" . get_query_var('belmonth') . "&belyear=" . get_query_var('belyear') . "\" method=\"POST\">\n";
         print "<table class=\"contenttable-pr\" border=\"1\" width=\"90%\">\n";
         print "<tr class=\"contenttable-pr tr-odd\">\n";
         print "\t<td><b>Anreise:</b></td><td><select name=\"comeday\" size=\"1\">";
@@ -271,7 +271,8 @@ $parent_id = getAssociationParent();
       } else {
 
         if (strcmp(get_query_var('belaction'), "dodel") == 0) {
-          if ($result = $db->DoQuery("DELETE FROM landheim WHERE id='" . get_query_var('belentry') . "'")) {
+          $delid = array('id' => get_query_var('belentry'));
+          if ($db->DoDelete('landheim', $delid) != false) {
             print "<p>Die Landheimbelegung wurde erfolgreich aus der Datenbank gel&ouml;scht</p>";
           } else {
             print "<p>Die Landheimbelegung wurde NICHT aus der Datenbank gel&ouml;scht</p>";
@@ -279,7 +280,20 @@ $parent_id = getAssociationParent();
         }
 
         if (strcmp(get_query_var('belaction'), "donew") == 0) {
-          if ($db->DoQuery("INSERT INTO landheim (id, begin, ende, person, organisation, state, phone, fax, give, take, mail, remark) VALUES('', '".$_POST["comeyear"]."-".$_POST["comemonth"]."-".$_POST["comeday"]."  ".$_POST["comehour"].":".$_POST["comeminute"].":00', '".$_POST["goyear"]."-".$_POST["gomonth"]."-".$_POST["goday"]."  ".$_POST["gohour"].":".$_POST["gominute"].":00', '".$_POST["person"]."', '".$_POST["organisation"]."', '".$_POST["state"]."', '".$_POST["phone"]."', '".$_POST["fax"]."', '".$_POST["give"]."', '".$_POST["take"]."', '".$_POST["mail"]."', '".$_POST["remark"]."')")) {
+          $insdata = array('id' => '',
+            'begin' => $_POST['comeyear']."-".$_POST['comemonth']."-".$_POST['comeday']."  ".$_POST['comehour'].":".$_POST['comeminute'].":00",
+            'ende' => $_POST['goyear']."-".$_POST['gomonth']."-".$_POST['goday']."  ".$_POST['gohour'].":".$_POST['gominute'].":00",
+            'person' => $_POST['person'],
+            'organisation' => $_POST['organisation'],
+            'state' => $_POST['state'],
+            'phone' => $_POST['phone'],
+            'fax' => $_POST['fax'],
+            'give' => $_POST['give'],
+            'take' => $_POST['take'],
+            'mail' => $_POST['mail'],
+            'remark' => $_POST['remark']
+          );
+          if ($db->DoInsert('landheim', $insdata) != false) {
             print "<p>Eintrag wurde angelegt</p>";
           } else {
             print "<p>Eintrag wurde nicht angelegt</p>";
@@ -287,7 +301,21 @@ $parent_id = getAssociationParent();
         }
 
         if (strcmp(get_query_var('belaction'), "doedit") == 0) {
-          if ($db->DoQuery("UPDATE landheim SET begin='".$_POST["comeyear"]."-".$_POST["comemonth"]."-".$_POST["comeday"]."  ".$_POST["comehour"].":".$_POST["comeminute"].":00', ende='".$_POST["goyear"]."-".$_POST["gomonth"]."-".$_POST["goday"]."  ".$_POST["gohour"].":".$_POST["gominute"].":00', person='".$_POST["person"]."', organisation='".$_POST["organisation"]."', state='".$_POST["state"]."', phone='".$_POST["phone"]."', fax='".$_POST["fax"]."', give='".$_POST["give"]."', take='".$_POST["take"]."', mail='".$_POST["mail"]."', remark='".$_POST["remark"]."' WHERE id='".$_POST["entry"]."'")) {
+          $updata = array(
+            'begin' => $_POST['comeyear']."-".$_POST['comemonth']."-".$_POST['comeday']."  ".$_POST['comehour'].":".$_POST['comeminute'].":00",
+            'ende' => $_POST['goyear']."-".$_POST['gomonth']."-".$_POST['goday']."  ".$_POST['gohour'].":".$_POST['gominute'].":00",
+            'person' => $_POST['person'],
+            'organisation' => $_POST['organisation'],
+            'state' => $_POST['state'],
+            'phone' => $_POST['phone'],
+            'fax' => $_POST['fax'],
+            'give' => $_POST['give'],
+            'take' => $_POST['take'],
+            'mail' => $_POST['mail'],
+            'remark' => $_POST['remark']
+          );
+          $upwhere = array( 'id' => $_POST['entry'] );
+          if ($db->DoUpdate('landheim', $updata, $upwhere) != false) {
             print "<p>Eintrag wurde ge&auml;ndert</p>";
           } else {
             print "<p>Eintrag wurde nicht ge&auml;ndert</p>";
@@ -426,7 +454,7 @@ $parent_id = getAssociationParent();
         print "<a href=\"" . get_permalink() . "?belmonth=1&belyear=".($daynum["year"]+1)."\">".($daynum["year"]+1)."</a>\n";
         print "</p>\n";
         
-        print "<p><br><a href=\"" . get_permalink() . "?belaction=new&belmonth".$daynum["mon"]."&belyear=".$daynum["year"]."\">Neuen Eintrag anlegen</a><br><br></p>\n";
+        print "<p><br><a href=\"" . get_permalink() . "?belaction=new&belmonth=".$daynum["mon"]."&belyear=".$daynum["year"]."\">Neuen Eintrag anlegen</a><br><br></p>\n";
 
          if ($db->rewind_data($result)) {
           print "<table width=\"90%\" border=\"1\" class=\"contenttable-pr\">\n";
