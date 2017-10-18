@@ -19,10 +19,12 @@
     if (isset($teaser_name))
     {
       $teaser_args['category_name'] = $teaser_name;
+	  $teaser_id = get_cat_id($teaser_name);
     } else if (isset($teaser_id)) {
       $teaser_args['cat'] = $teaser_id;
     } else {
       $teaser_args['category_name'] = 'teaser';
+	  $teaser_id = get_cat_id('teaser');
     }
 
     $teaser_query = new WP_Query( $teaser_args );
@@ -31,10 +33,22 @@
     $first_img = false;
     while( $teaser_query->have_posts() ) {
       $teaser_query->the_post();
+	  $categories = get_the_category();
+	  $show = false;
+	  if ($categories)
+      {
+        foreach ($categories as $category) {
+          if ($category->term_id == $teaser_id)
+	      {
+		    $show = true;
+		    break;
+		  }
+	    }
+      }
       $startDate = DateTime::createFromFormat('Ymd', get_field( 'show_start' ));
       $endDate = DateTime::createFromFormat('Ymd', get_field( 'show_end' ));
       $nowDate = new DateTime("now");
-      if ($startDate <= $nowDate && $nowDate <= $endDate)
+      if ($show == true && $startDate <= $nowDate && $nowDate <= $endDate)
       {
         if ($imgAvail == false)
         {

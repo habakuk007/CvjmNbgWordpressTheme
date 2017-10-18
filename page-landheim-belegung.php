@@ -80,7 +80,20 @@ $parent_id = getAssociationParent();
         print "<p>Ihre Best&auml;tigungsmail konnte nicht versendet werden.</p>";
       }
 
-      if ($db->DoQuery("INSERT INTO landheim (id, begin, ende, person, organisation, state, phone, fax, give, take, mail, remark) VALUES ('', '".$_POST["comeyear"]."-".$_POST["comemonth"]."-".$_POST["comeday"]."  ".$_POST["comehour"].":".$_POST["comeminute"].":00',  '".$_POST["goyear"]."-".$_POST["gomonth"]."-".$_POST["goday"]."  ".$_POST["gohour"].":".$_POST["gominute"].":00', '".$_POST["person"]."', '".$_POST["organisation"]."', 'A', '".$_POST["phone"]."', '".$_POST["fax"]."', NULL, NULL, '".$_POST["mail"]."', '".$_POST["remark"]."')")) {
+      $insdata = array('id' => '',
+        'begin' => $_POST['comeyear']."-".$_POST['comemonth']."-".$_POST['comeday']."  ".$_POST['comehour'].":".$_POST['comeminute'].":00",
+        'ende' => $_POST['goyear']."-".$_POST['gomonth']."-".$_POST['goday']."  ".$_POST['gohour'].":".$_POST['gominute'].":00",
+        'person' => $_POST['person'],
+        'organisation' => $_POST['organisation'],
+        'state' => 'A',
+        'phone' => $_POST['phone'],
+        'fax' => $_POST['fax'],
+        'give' => '',
+        'take' => '',
+        'mail' => $_POST['mail'],
+        'remark' => $_POST['remark']
+      );
+      if ($db->DoInsert("landheim", $insdata) != false) {
 
       print "<p>Ihre Anfrage vom ".$_POST["comeday"].".".$_POST["comemonth"].".".$_POST["comeyear"]." bis zum ".$_POST["goday"].".".$_POST["gomonth"].".".$_POST["goyear"]." wurde erfolgreich eingetragen</p>";
       } else {
