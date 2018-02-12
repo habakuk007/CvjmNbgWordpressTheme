@@ -39,8 +39,9 @@ if (!empty($vals))
 	}
     
 	$falle1 = (isset($vals['first_contact_diefalle']) && $vals['first_contact_diefalle'] !== '42');
-	$falle2 = (isset($vals['first_contact_diefalle2']) && $vals['first_contact_diefalle'] !== '');
+	$falle2 = (isset($vals['first_contact_diefalle2']) && $vals['first_contact_diefalle2'] !== '');
 	$isRobot = falle1 || falle2;
+	echo "<!-- Falle 1: $falle1, Falle 2: $falle2 --/>";
 	
   if (strlen($check_text) > 0 && !$isRobot) {
     $sent = wp_mail($to, $subject, $mail_text, $headers);
