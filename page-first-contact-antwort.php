@@ -38,6 +38,8 @@ if (!empty($vals))
 		$check_text = $vals['first_contact_issue'] . $vals['first_contact_mail'];
 	}
     
+	$falle1 = false;
+	$falle2 = false;
 	$falle1 = (isset($vals['first_contact_diefalle']) && $vals['first_contact_diefalle'] !== '42');
 	$falle2 = (isset($vals['first_contact_diefalle2']) && $vals['first_contact_diefalle2'] !== '');
 	$isRobot = falle1 || falle2;
