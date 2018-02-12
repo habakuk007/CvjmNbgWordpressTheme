@@ -5,7 +5,8 @@
       <input name="first_contact_mail" type="text" class="first_contact_text_input" placeholder="E-Mail Adresse">
       <input name="first_contact_name" type="text" class="first_contact_text_input" placeholder="Name">
       <input name="first_contact_age" type="text" class="first_contact_text_input" placeholder="Alter">
-      <div style="position: absolute; left: -4999px;"><input type="text" name="first_contact_diefalle" tabindex="-1" value=""></div>
+      <div style="position: absolute; left: -4999px;"><input type="text" name="first_contact_diefalle" tabindex="-1" value="42"></div>
+	  <div style="position: absolute; right 4999px;"><input type="text" name="first_contact_diefalle2" tabindex="-1" value=""></div>
       <textarea name="first_contact_issue" class="first_contact_text_input" rows="4" placeholder="Anliegen"></textarea>
       <input type="submit" value="abschicken" class="first_contact_submit">
     </form>
@@ -20,11 +21,12 @@
     </map>
     <!--<iframe width="100%" height="260" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.de/maps/ms?msa=0&amp;msid=202299304858622703127.0004eca77fc359d632122&amp;ie=UTF8&amp;t=m&amp;ll=49.430626,11.074905&amp;spn=0.116109,0.179214&amp;z=11&amp;output=embed"></iframe>-->
   </div>
+  <!--
   <div class="losung_title_image_container">
     <a href="http://www.grasundufer.de/index.php?view=newsfeed&catid=46%3Achristliche-feeds&id=16-erfde-worte-zur-losung&option=com_newsfeeds&Itemid=104" target="_blank">
     <img src="<?php bloginfo('template_directory'); ?>/images/tageslosung_logo.jpg" class="sidebar_header_image">
     </a>
     <?php the_widget('Losung_Widget', ''); ?>
-  </div>
+  </div>/-->
   <?php require(locate_template('sidebar_links.php')); ?>
 </div>
